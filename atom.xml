@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="www.www.com/"/>
+  <updated>2016-02-26T08:05:21.000Z</updated>
+  <id>www.www.com/</id>
+  
+  <author>
+    <name>Xchliu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hello world</title>
+    <link href="www.www.com/2016/02/26/2013-09-27-hello-world/"/>
+    <id>www.www.com/2016/02/26/2013-09-27-hello-world/</id>
+    <published>2016-02-26T08:05:21.000Z</published>
+    <updated>2016-02-26T08:05:21.000Z</updated>
+    
+    <content type="html">&lt;p&gt;hello world&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      haha
+    
+    </summary>
+    
+      <category term="test" scheme="www.www.com/categories/test/"/>
+    
+    
+      <category term="test" scheme="www.www.com/tags/test/"/>
+    
+  </entry>
+  
+</feed>
