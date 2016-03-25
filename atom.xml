@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.www.com/"/>
-  <updated>2016-02-26T08:05:21.000Z</updated>
+  <updated>2016-03-25T07:26:30.000Z</updated>
   <id>www.www.com/</id>
   
   <author>
@@ -16,18 +16,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hello world</title>
-    <link href="www.www.com/2016/02/26/2013-09-27-hello-world/"/>
-    <id>www.www.com/2016/02/26/2013-09-27-hello-world/</id>
-    <published>2016-02-26T08:05:21.000Z</published>
-    <updated>2016-02-26T08:05:21.000Z</updated>
+    <title>Hello World</title>
+    <link href="www.www.com/2016/03/25/2013-09-27-hello-world/"/>
+    <id>www.www.com/2016/03/25/2013-09-27-hello-world/</id>
+    <published>2016-03-25T07:26:30.000Z</published>
+    <updated>2016-03-25T07:26:30.000Z</updated>
     
-    <content type="html">&lt;p&gt;hello world&lt;/p&gt;
+    <content type="html">&lt;p&gt;Hello World&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      haha
+      &lt;p&gt;Hello World&lt;/p&gt;
+
     
     </summary>
     
@@ -35,6 +36,129 @@
     
     
       <category term="test" scheme="www.www.com/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>InnoDB Primary key</title>
+    <link href="www.www.com/2016/03/24/Key/"/>
+    <id>www.www.com/2016/03/24/Key/</id>
+    <published>2016-03-24T10:25:04.000Z</published>
+    <updated>2016-03-25T07:24:56.000Z</updated>
+    
+    <content type="html">&lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  ...
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为什么InnoDB需要一个自增主键？或许有以下的答案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应该这样    &lt;/li&gt;
+&lt;li&gt;大家都这么做，自然有他的好处&lt;/li&gt;
+&lt;li&gt;老师/前辈 告诉/博客 是这样&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;统一规范&lt;/li&gt;
+&lt;li&gt;查询效率&lt;/li&gt;
+&lt;li&gt;运维依赖&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;表体积（data，index）&lt;/li&gt;
+&lt;li&gt;更改主键需要重建表&lt;/li&gt;
+&lt;li&gt;隐藏主键&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;聚集索引(clusterd index)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;B+ tree&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;二级索引&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;物理结构&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;统一规范&quot;&gt;&lt;a href=&quot;#统一规范&quot; class=&quot;headerlink&quot; title=&quot;统一规范&quot;&gt;&lt;/a&gt;统一规范&lt;/h3&gt;&lt;p&gt;很多情况下，表的自增主键已经成为了InnoDB的建表规范，而这个规范的来源，不管是经验，还是通过测试数据对比，或者是重点在“统一“上，这样做都带来若干的好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;建立参考基准，这一类还包括MySQL目录分配，基准配置，命名规范等。生产线采用符合基准的部署策略，对于初期部署，日常管理都会有很大的效率提升。&lt;/li&gt;
+&lt;li&gt;业务。关系型数据库中，范式作为解除集合函数依赖的法则，实体经常会在最终形成独立数据表，而最多的情况是，实例的属性中并没有能够唯一标识集合的key，比如user name，那么此时的自增主键就可以完美成为主键。说到范式，经常听到反（三）范式设计，范式只有满足与不满足，它既不是公理也不是真理，没有违反一说，在保证数据完整性的原则上做出任何手段的拆表都是可行的。&lt;/li&gt;
+&lt;li&gt;沟通成本。很多时候都会被问到，为什么要有建自增主键啊，32位md5行不行，64位uuid行不行，128位hash行不行。假设这个沟通结果为达成一致比例是7/10。单次消耗时间为t（因人而异），那么一段时间内花在这个点上的时间是t &lt;em&gt; n，并且，其中 t &lt;/em&gt; n * 0.3为无效沟通。有了统一规范，自然沟通的成本就降低了。&lt;/li&gt;
+&lt;li&gt;还有一个好处，让越来越多的人认为就应该如此。：）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;查询效率&quot;&gt;&lt;a href=&quot;#查询效率&quot; class=&quot;headerlink&quot; title=&quot;查询效率&quot;&gt;&lt;/a&gt;查询效率&lt;/h3&gt;&lt;p&gt;对于上面提到的0.3，可能需要进一步的论据来支持。那怎么办？&lt;code&gt;talk is cheap, show me the code&lt;/code&gt;。 同理，只能拿数据说话，能动手的时候坚决不动口。做一个对比的压力测试，当然是选择性能更好的方式。&lt;/p&gt;
+&lt;p&gt;查询效率，准确说查询响应时间，包括单次查询和并发查询。分2种情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;带key查询，这个key可是自定义主键，自增主键，二级索引。&lt;/li&gt;
+&lt;li&gt;不带key查询，做全表扫描。 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;运维依赖&quot;&gt;&lt;a href=&quot;#运维依赖&quot; class=&quot;headerlink&quot; title=&quot;运维依赖&quot;&gt;&lt;/a&gt;运维依赖&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;管理工具。日常维护脚本工具对主键的依赖。&lt;/li&gt;
+&lt;li&gt;第三方工具，比如pecona toolkit（&lt;a href=&quot;https://www.percona.com/doc/percona-toolkit/2.2/pt-online-schema-change.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pt-online-schema-change
+&lt;/a&gt;，&lt;a href=&quot;https://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pt-table-checksum&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;高可用架构对显式定义主键的依赖：&lt;a href=&quot;https://www.percona.com/software/mysql-database/percona-xtradb-cluster&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Percona XtraDB Cluster&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;表体积&quot;&gt;&lt;a href=&quot;#表体积&quot; class=&quot;headerlink&quot; title=&quot;表体积&quot;&gt;&lt;/a&gt;表体积&lt;/h3&gt;&lt;p&gt;表级的优化，很重要的一点是保证数据表处于最紧凑，体积最小的状态，尽可能占用最小的空间，减少碎片空间，在进行数据检索时，占用更少的IO资源，自然查询的效率就提升了。&lt;/p&gt;
+&lt;p&gt;表的体积：cluster index ，secondary index&lt;/p&gt;
+&lt;p&gt;对比下几种情况下主键的空间占用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int 4 bytes  
+    unsigned 0 ~ 4294967295
+    signed：-2147483648 to 2147483647
+ bigint 8 bytes  
+     unsigned 0 ~ 18446744073709551615
+     signed -9223372036854775808 to9223372036854775807
+ 隐藏主键  6 bypes  
+     48位
+ 自定义（uuid） len(key) +1 
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;所有的二级索引存放的是所依赖的主键信息，主键大小直接影响二级索引的大小。 &lt;/li&gt;
+&lt;li&gt;主键的空间占用：int &amp;lt; 隐藏主键 &amp;lt; bigint &amp;lt; 自定义&lt;/li&gt;
+&lt;li&gt;InnoDB 使用主键来作为cluster index来形成整个索引树，单调递增的整数在b+ tree的形成，遍历，分裂，性能最优。需要注意的是，int 和bigint都是有限的取值域。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;隐藏主键&quot;&gt;&lt;a href=&quot;#隐藏主键&quot; class=&quot;headerlink&quot; title=&quot;隐藏主键&quot;&gt;&lt;/a&gt;隐藏主键&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index on a synthetic column containing row ID values.
+ The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于每一个InnoDB表，InnoDB都需要一个cluster key来组织表数据，一般情况下是主键（PRIMAYR KEY）.如果用户没有指定主键，如果表中没有唯一性约束且有NOT NULL属性的数据列，InnoDB会创建一个6个字节隐藏主键列作为cluter key，这个隐藏主键（ROW_ID）在数据插入时根据全局序列单调递增,这个ROW_ID对用户不可见，也不会用于内部功能（行级复制）。&lt;/p&gt;
+&lt;h4 id=&quot;分配策略&quot;&gt;&lt;a href=&quot;#分配策略&quot; class=&quot;headerlink&quot; title=&quot;分配策略&quot;&gt;&lt;/a&gt;分配策略&lt;/h4&gt;&lt;p&gt;在系统表空间中的数据字典中记录了所有ID的当前可用最大值, 可以理解为max(ID)+step, 这个全局的计算器就根据它来分配ID。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;file: include/dict0boot.ic
+38  UNIV_INLINE
+39  row_id_t
+40  dict_sys_get_new_row_id(void)
+41  /*=========================*/
+42  {
+43          row_id_t        id;
+44  
+45          mutex_enter(&amp;amp;(dict_sys-&amp;gt;mutex));
+47          id = dict_sys-&amp;gt;row_id;
+49          if (0 == (id % DICT_HDR_ROW_ID_WRITE_MARGIN)) {
+51                  dict_hdr_flush_row_id();
+52          }
+54          dict_sys-&amp;gt;row_id++;
+56          mutex_exit(&amp;amp;(dict_sys-&amp;gt;mutex));
+57  
+58          return(id);
+59  }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;全局序列使用dict_sys-&amp;gt;mutex 互斥锁进行保护，即使是增值（和原子递增相反）。实现中并没有对ID值超过48位的溢出问题做保护处理，但是假设一个每秒100万的插入量也需要9年左右才能耗尽ID的取值域。&lt;/p&gt;
+&lt;h4 id=&quot;冲突的保护&quot;&gt;&lt;a href=&quot;#冲突的保护&quot; class=&quot;headerlink&quot; title=&quot;冲突的保护&quot;&gt;&lt;/a&gt;冲突的保护&lt;/h4&gt;&lt;p&gt;DICT_HDR_ROW_ID_WRITE_MARGIN(256) 这个值决定了序列的落盘机制，如果取得的id对DICT_HDR_ROW_ID_WRITE_MARGIN取模为0（倍数），就修改数据字典中SYS中的DICT_HDR_ROW_ID并flush disk。InnoDB启动时，InnoDB会将磁盘上DICT_HDR_ROW_ID的增加到256-511范围内。这样就保证了已经产生的ID都小于当前的起始值，也就不会造成ID冲突。&lt;/p&gt;
+&lt;h4 id=&quot;性能&quot;&gt;&lt;a href=&quot;#性能&quot; class=&quot;headerlink&quot; title=&quot;性能&quot;&gt;&lt;/a&gt;性能&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;在InnoDB的代码中很多地方都使用到dict_sys-&amp;gt;mutex。如果这个锁被占用（如drop table）， 那么包含隐藏主键的InnoDB表的插入操作将受到阻塞。&lt;/li&gt;
+&lt;li&gt;ROW_ID的分配时，共享的互斥锁和全局共享计数器都需要序列化，这也会形成性能瓶颈，如果对包含隐藏主键进行并发插入，其性能必然下降。&lt;/li&gt;
+&lt;li&gt;无论事务是否提交，每DICT_HDR_ROW_ID_WRITE_MARGIN个ROW_ID分配，都会进行SYS的刷盘操作，磁盘本身就是数据库系统中硬件短板，大多数优化手段都会将减少磁盘IO作为重要的考虑因素，使用隐藏主键自然会增加IO负载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于隐藏主键：&lt;a href=&quot;http://blog.jcole.us/2013/05/02/how-does-innodb-behave-without-a-primary-key/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How does InnoDB behave without a Primary Key?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;长主键： &lt;a href=&quot;https://www.percona.com/blog/2006/10/03/long-primary-key-for-innodb-tables/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Long PRIMARY KEY for Innodb tables&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
+  `id` int NOT NUL
+    
+    </summary>
+    
+      <category term="MySQL" scheme="www.www.com/categories/MySQL/"/>
+    
+      <category term="InnoDB" scheme="www.www.com/categories/MySQL/InnoDB/"/>
+    
+      <category term="Optimize" scheme="www.www.com/categories/MySQL/InnoDB/Optimize/"/>
+    
+    
+      <category term="InnoDB" scheme="www.www.com/tags/InnoDB/"/>
+    
+      <category term="Primary" scheme="www.www.com/tags/Primary/"/>
+    
+      <category term="key" scheme="www.www.com/tags/key/"/>
     
   </entry>
   
