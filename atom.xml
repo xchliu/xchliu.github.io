@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.www.com/"/>
-  <updated>2016-04-01T06:06:37.000Z</updated>
+  <updated>2016-04-11T11:19:07.000Z</updated>
   <id>www.www.com/</id>
   
   <author>
@@ -16,11 +16,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>The physical structure of records in InnoDB</title>
+    <link href="www.www.com/2016/04/05/The-physical-structure-of-records-in-InnoDB/"/>
+    <id>www.www.com/2016/04/05/The-physical-structure-of-records-in-InnoDB/</id>
+    <published>2016-04-05T09:26:00.000Z</published>
+    <updated>2016-04-11T11:19:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;原文地址:&lt;br&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physical structure of records in InnoDB&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Record-offsets&quot;&gt;&lt;a href=&quot;#Record-offsets&quot; class=&quot;headerlink&quot; title=&quot;Record offsets&quot;&gt;&lt;/a&gt;Record offsets&lt;/h3&gt;&lt;p&gt;记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。&lt;/p&gt;
+&lt;h3 id=&quot;The-record-header&quot;&gt;&lt;a href=&quot;#The-record-header&quot; class=&quot;headerlink&quot; title=&quot;The record header&quot;&gt;&lt;/a&gt;The record header&lt;/h3&gt;&lt;p&gt;处于数据记录前的记录头结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Header.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Next Record Offset: 当前页中，指向索引升序顺序中下一个数据记录的相对偏移量&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Record Type:记录类型，当前只支持4中类型：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conventional（0）
+node pointer（1）
+infimum（2）
+supremum（3）
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Order: 记录插入的顺序值。堆记录从0开始计数，Infimum 总是0， supremum总是1， 用户数据从2开始编号。&lt;/li&gt;
+&lt;li&gt;Numver of Records Owned：在数据页目录本记录占用的记录数&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Info Flags: 存储记录布尔标志的4位位图。当前只定义了2个标志：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;min_rec(1) 记录为B+tree中非叶节点中的最小值
+deleted(2) 删除标记
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;Nullable field  bitmap：对每一个可为null的列用一位进行标示是否null,如果某列为null，其列数据将被忽略；如果没有可为null的列，这个标志位将取消。&lt;/li&gt;
+&lt;li&gt;Variable field lengths array: 由8位或16位整数（根据列的最大值定）组成的数组，记录数据列的长度。如果没有可变长列，此标志位取消。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;记录头占每行数据最小到5个字节，如果变长类很多，记录头的长度会大很多。&lt;/p&gt;
+&lt;h3 id=&quot;Clustered-indexes&quot;&gt;&lt;a href=&quot;#Clustered-indexes&quot; class=&quot;headerlink&quot; title=&quot;Clustered indexes&quot;&gt;&lt;/a&gt;Clustered indexes&lt;/h3&gt;&lt;p&gt;聚集索引记录结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Clustered_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Cluster Key Fields：聚集索引列，串联在一起。InnoDB 使用内部存储引擎对没列的类型原始字节格式化成一个字节流&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Transaction ID：48位，上一次更改记录数据的事务ID&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Roll Pointer：包含记录了上一次更改记录数据的事务在回滚记录段中的位置信息的结构体。Roll Pointer 结构体包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1位的‘is insert’标识 &lt;/li&gt;
+&lt;li&gt;7位的回滚端ID&lt;/li&gt;
+&lt;li&gt;4位回滚页编号&lt;/li&gt;
+&lt;li&gt;2位回滚页偏移量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;None-Key Fields 所有非主键数据，也就是实际的行数据，链接成一个字节流。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;非页节点记录结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Clustered_Non_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;由于非页节点不是MVCC，事务ID和回滚指针都被取消。存在实际数据的列改为存放子节点的指针。由于聚集索引不能为NULL，null标识位也被取消。&lt;/p&gt;
+&lt;h3 id=&quot;Secondary-indexes&quot;&gt;&lt;a href=&quot;#Secondary-indexes&quot; class=&quot;headerlink&quot; title=&quot;Secondary indexes&quot;&gt;&lt;/a&gt;Secondary indexes&lt;/h3&gt;&lt;p&gt;InnoDB的二级索引和聚集索引的结构一样，只是在聚集索引存放非键值列（叶节点）的空间，二级索引存放的是主键信息（PKV，主键值）。如果二级索引和主键出现重复的列，二级索引中只存放非重复的部分。例如，表的主键为（a,b,c），二级索引为（a,d），则二级索引中存放（a,d），则PKVs中存放（b,c）.&lt;/p&gt;
+&lt;p&gt;由于二级索引的列允许非唯一和可为空，则可变长段和null标识位都可能有值。所以页节点的结构很简单：&lt;br&gt;&lt;img src=&quot;/images/Record_Secondary_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;同聚集索引一样，二级索引中的这些段连接成一个字节流。&lt;/p&gt;
+&lt;p&gt;非叶节点的结构：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Record_Secondary_Non_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;二级索引的非叶节点有一点需要注意：记录中包含了主键值（PKV），并作为键值的一部分。二级索引允许为非唯一和可为空，则每一个记录都需要一个唯一标识，所以使用主键值来确保唯一性。这意味着二级索引中的非叶节点占用空间比他们的页节点大4个字节。&lt;/p&gt;
+&lt;h3 id=&quot;空间开销&quot;&gt;&lt;a href=&quot;#空间开销&quot; class=&quot;headerlink&quot; title=&quot;空间开销&quot;&gt;&lt;/a&gt;空间开销&lt;/h3&gt;&lt;p&gt;从上面的结构图，很容易计算出InnoDB每一行的空间占用。聚集索引叶节点需要最小5字节的记录头，6字节的事务ID，7字节的回滚指针，每行一共18字节。对于比较小的表，比如只有2-3列整数列，空间浪费比例很大。&lt;br&gt;另外，在每一页的空间额外开销比例也很大，主要消耗在需要大量空间的无效页的填充上。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文地址:&lt;br&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physic
+    
+    </summary>
+    
+      <category term="MySQL" scheme="www.www.com/categories/MySQL/"/>
+    
+      <category term="InnoDB" scheme="www.www.com/categories/MySQL/InnoDB/"/>
+    
+      <category term="Internal" scheme="www.www.com/categories/MySQL/InnoDB/Internal/"/>
+    
+      <category term="Translate" scheme="www.www.com/categories/MySQL/InnoDB/Internal/Translate/"/>
+    
+    
+      <category term="InnoDB" scheme="www.www.com/tags/InnoDB/"/>
+    
+      <category term="record" scheme="www.www.com/tags/record/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The physical structure of InnoDB index pages</title>
     <link href="www.www.com/2016/03/31/The-physical-structure-of-InnoDB-index-pages/"/>
     <id>www.www.com/2016/03/31/The-physical-structure-of-InnoDB-index-pages/</id>
-    <published>2016-03-31T09:48:14.000Z</published>
-    <updated>2016-04-01T06:06:37.000Z</updated>
+    <published>2016-03-31T09:48:00.000Z</published>
+    <updated>2016-04-01T06:42:58.000Z</updated>
     
     <content type="html">&lt;p&gt;原文地址:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physical structure of InnoDB index pages &lt;/a&gt;&lt;/p&gt;
@@ -133,7 +206,7 @@
     <link href="www.www.com/2016/03/24/InnoDB-Primary-key/"/>
     <id>www.www.com/2016/03/24/InnoDB-Primary-key/</id>
     <published>2016-03-24T10:25:04.000Z</published>
-    <updated>2016-03-25T07:24:56.000Z</updated>
+    <updated>2016-04-01T06:09:27.000Z</updated>
     
     <content type="html">&lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
@@ -157,7 +230,7 @@
 &lt;li&gt;&lt;a href=&quot;&quot;&gt;聚集索引(clusterd index)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;&quot;&gt;B+ tree&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;二级索引&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;&quot;&gt;物理结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://xchliu.github.io/2016/03/31/The-physical-structure-of-InnoDB-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;物理结构&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;统一规范&quot;&gt;&lt;a href=&quot;#统一规范&quot; class=&quot;headerlink&quot; title=&quot;统一规范&quot;&gt;&lt;/a&gt;统一规范&lt;/h3&gt;&lt;p&gt;很多情况下，表的自增主键已经成为了InnoDB的建表规范，而这个规范的来源，不管是经验，还是通过测试数据对比，或者是重点在“统一“上，这样做都带来若干的好处：&lt;/p&gt;
 &lt;ul&gt;
