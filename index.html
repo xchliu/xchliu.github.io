@@ -241,6 +241,363 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/14/Python-One-line/" itemprop="url">
+                  Python One line
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-04-14T19:03:21+08:00" content="2016-04-14">
+              2016-04-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/14/Python-One-line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Python-One-line/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/11/Python-collections/" itemprop="url">
+                  Python collections
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-04-11T18:13:00+08:00" content="2016-04-11">
+              2016-04-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/11/Python-collections/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/Python-collections/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：</p>
+<h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h2><p>dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。</p>
+<ul>
+<li><p>初始化</p>
+<pre><code>&gt;&gt;&gt; from collections import Counter
+&gt;&gt;&gt; c=Counter()
+# list
+&gt;&gt;&gt; c=Counter([1,2])
+&gt;&gt;&gt; c
+Counter({1: 1, 2: 1})
+# 直接初始化计数
+&gt;&gt;&gt; c=Counter({&apos;a&apos;:2,&apos;b&apos;:3})
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 3, &apos;a&apos;: 2})
+&gt;&gt;&gt; c=Counter(a=2,b=10)
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 10, &apos;a&apos;: 2})
+</code></pre></li>
+<li><p>操作</p>
+<p>  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。</p>
+<pre><code>&gt;&gt;&gt; c[&apos;b&apos;]=20
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 20, &apos;a&apos;: 2})
+&gt;&gt;&gt; c.elements()
+&lt;itertools.chain object at 0x11027f290&gt;
+&gt;&gt;&gt; list(c.elements())
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;]
+</code></pre></li>
+<li><p>方法</p>
+<ul>
+<li><p>elements <code>无序</code>返回所有元素，如果你想生成一个特定的list，这个方法很方便。</p>
+<pre><code>&gt;&gt;&gt; c=Counter(a=2,b=3,d=1)
+&gt;&gt;&gt; list(c.elements())
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;d&apos;]
+</code></pre></li>
+<li><p>most_common 按计数返回top n</p>
+<pre><code>&gt;&gt;&gt; c.most_common(1)
+[(&apos;b&apos;, 3)]
+</code></pre></li>
+<li><p>subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。</p>
+<pre><code>&gt;&gt;&gt; d=Counter(a=1,b=1,d=1,e=2)
+&gt;&gt;&gt; c.subtract(d)
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
+</code></pre></li>
+<li><p>update 同dict，不过Counter update的是计数值。</p>
+<pre><code>&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
+&gt;&gt;&gt; c.update([&apos;a&apos;,&apos;d&apos;])
+&gt;&gt;&gt; c
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
+</code></pre><p>*其他 dict类包含的属性            </p>
+</li>
+</ul>
+</li>
+<li><p>运算            </p>
+<ol>
+<li>加 对应key的计数相加，保留正数</li>
+<li>减 对应key的计数相加，保留正数</li>
+<li>交集 对应key的计数最小值，保留正数</li>
+<li><p>并集 对应key的计数最大值，保留正数 </p>
+<pre><code>&gt;&gt;&gt; c
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
+&gt;&gt;&gt; d
+Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})
+  &gt;&gt;&gt; c+d
+Counter({&apos;a&apos;: 2, &apos;b&apos;: 2, &apos;d&apos;: 1})
+&gt;&gt;&gt; c-d
+Counter()
+&gt;&gt;&gt; d-c
+Counter({&apos;e&apos;: 4, &apos;d&apos;: 1})
+&gt;&gt;&gt; c&amp;d
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1})
+&gt;&gt;&gt; c|d
+Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><p>对于常用的list类型，对列表中的元素进行插入，删除，以及添加，会涉及到列表的元素移动或者列表大小的变化。并且list只能从队列末端进行append和pop。</p>
+<p>双端队列deque 提供线程安全，内存性能，可从队列两端进行元素插入和删除的高速队列。首尾的快速操作可以做为动态的消息队列。</p>
+<p>deque的方法和list类似，多了对端的操作函数，比如append，appendleft。<br>其中maxlen属性用来控制队列最大长度，如果对一个满队列进行插入，则会通过推出对端相应数量的元素来完成。</p>
+<p>常用操作：</p>
+<pre><code>&gt;&gt;&gt; from collections import deque
+&gt;&gt;&gt; d=deque([1,2,3])
+&gt;&gt;&gt; d
+deque([1, 2, 3])
+&gt;&gt;&gt; d.append(&apos;a&apos;)
+&gt;&gt;&gt; d
+deque([1, 2, 3, &apos;a&apos;])
+&gt;&gt;&gt; d.appendleft(&apos;a&apos;)
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, 1, 2, 3, &apos;a&apos;])
+&gt;&gt;&gt; d[2]
+2
+&gt;&gt;&gt; d.reverse()
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, 3, 2, 1, &apos;a&apos;])
+&gt;&gt;&gt; d.rotate(1)
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, &apos;a&apos;, 3, 2, 1])
+&gt;&gt;&gt; d.pop()
+1
+&gt;&gt;&gt; d.popleft()
+&apos;a&apos;
+&gt;&gt;&gt;
+</code></pre><h2 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h2><p>又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。</p>
+<pre><code>&gt;&gt;&gt; from collections import defaultdict
+&gt;&gt;&gt; d = defaultdict(list)
+&gt;&gt;&gt; d[&apos;newkey&apos;].append(&apos;list&apos;)
+&gt;&gt;&gt; d
+defaultdict(&lt;type &apos;list&apos;&gt;, {&apos;newkey&apos;: [&apos;list&apos;]})
+</code></pre><p>如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。</p>
+<h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h2><p>只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：</p>
+<ul>
+<li>属性访问</li>
+<li>自解释</li>
+<li><p>快速转换</p>
+<pre><code>&gt;&gt;&gt; from collections import namedtuple
+&gt;&gt;&gt; Servers = namedtuple(&apos;servers&apos;, [&apos;ip&apos;,&apos;port&apos;])
+&gt;&gt;&gt; s = Servers(&apos;1.1.1.1&apos;, 22)
+&gt;&gt;&gt; s
+servers(ip=&apos;1.1.1.1&apos;, port=22)
+&gt;&gt;&gt; s.ip
+&apos;1.1.1.1&apos;
+&gt;&gt;&gt; s._asdict()
+OrderedDict([(&apos;ip&apos;, &apos;1.1.1.1&apos;), (&apos;port&apos;, 22)])
+&gt;&gt;&gt; s._replace(port=23)
+servers(ip=&apos;1.1.1.1&apos;, port=23)
+&gt;&gt;&gt; s._fields
+(&apos;ip&apos;, &apos;port&apos;)
+</code></pre></li>
+</ul>
+<p>namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。</p>
+<p>实例的初始化可以用_make函数，也可以直接<code>**dict</code>来完成。</p>
+<h3 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a>OrderedDict</h3><p>dict的子类，有序字典，顺序取决于元素的插入顺序，需要注意的是如果改变已插入的元素，该元素会的顺序将移到最后。</p>
+<pre><code>&gt;&gt;&gt; from collections import OrderedDict
+&gt;&gt;&gt; d = OrderedDict()
+&gt;&gt;&gt; d
+OrderedDict()
+&gt;&gt;&gt; d[&apos;2&apos;] =1
+&gt;&gt;&gt; d[&apos;1&apos;] =2
+&gt;&gt;&gt; d
+OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2)])
+&gt;&gt;&gt;
+&gt;&gt;&gt; a ={&apos;7&apos;:4,&apos;4&apos;:3}
+&gt;&gt;&gt; d.update(a)
+&gt;&gt;&gt; d
+OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2), (&apos;4&apos;, 3), (&apos;7&apos;, 4)])    
+&gt;&gt;&gt; e = OrderedDict(a)
+&gt;&gt;&gt; e
+OrderedDict([(&apos;4&apos;, 3), (&apos;7&apos;, 4)])
+</code></pre><p>和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Multiset" target="_blank" rel="external">多元组Multiset</a></li>
+<li><a href="https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type" target="_blank" rel="external">python data types</a></li>
+<li><a href="https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections" target="_blank" rel="external">python collections</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/" itemprop="url">
                   The physical structure of records in InnoDB
                 </a>
@@ -987,7 +1344,7 @@ deleted(2) 删除标记
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1004,7 +1361,7 @@ deleted(2) 删除标记
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

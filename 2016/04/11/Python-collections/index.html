@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="InnoDB,record," />
+  <meta name="keywords" content="collections,python," />
 
 
 
@@ -57,27 +57,28 @@
 
 
 
-<meta name="description" content="原文地址:The physical structure of records in InnoDB
-Record offsets记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。
-The record header处于数">
+<meta name="description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
+Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
+
+初始化
+&amp;gt;&amp;gt;&amp;gt; from collections im">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The physical structure of records in InnoDB">
-<meta property="og:url" content="www.www.com/2016/04/05/The-physical-structure-of-records-in-InnoDB/index.html">
+<meta property="og:title" content="Python collections">
+<meta property="og:url" content="www.www.com/2016/04/11/Python-collections/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="原文地址:The physical structure of records in InnoDB
-Record offsets记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。
-The record header处于数">
-<meta property="og:image" content="www.www.com/images/Record_Header.png">
-<meta property="og:image" content="www.www.com/images/Record_Clustered_Leaf.png">
-<meta property="og:image" content="www.www.com/images/Record_Clustered_Non_Leaf.png">
-<meta property="og:image" content="www.www.com/images/Record_Secondary_Leaf.png">
-<meta property="og:image" content="www.www.com/images/Record_Secondary_Non_Leaf.png">
-<meta property="og:updated_time" content="2016-04-11T11:19:07.000Z">
+<meta property="og:description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
+Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
+
+初始化
+&amp;gt;&amp;gt;&amp;gt; from collections im">
+<meta property="og:updated_time" content="2016-04-18T10:41:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The physical structure of records in InnoDB">
-<meta name="twitter:description" content="原文地址:The physical structure of records in InnoDB
-Record offsets记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。
-The record header处于数">
+<meta name="twitter:title" content="Python collections">
+<meta name="twitter:description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
+Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
+
+初始化
+&amp;gt;&amp;gt;&amp;gt; from collections im">
 
 
 
@@ -95,7 +96,7 @@ The record header处于数">
   };
 </script>
 
-  <title> The physical structure of records in InnoDB |  </title>
+  <title> Python collections |  </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -235,7 +236,7 @@ The record header处于数">
             
             
               
-                The physical structure of records in InnoDB
+                Python collections
               
             
           </h1>
@@ -247,8 +248,8 @@ The record header处于数">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-05T17:26:00+08:00" content="2016-04-05">
-              2016-04-05
+            <time itemprop="dateCreated" datetime="2016-04-11T18:13:00+08:00" content="2016-04-11">
+              2016-04-11
             </time>
           </span>
 
@@ -261,44 +262,8 @@ The record header处于数">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/InnoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">InnoDB</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/InnoDB/Internal/" itemprop="url" rel="index">
-                    <span itemprop="name">Internal</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/InnoDB/Internal/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -313,8 +278,8 @@ The record header处于数">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/05/The-physical-structure-of-records-in-InnoDB/" itemprop="commentsCount"></span>
+                <a href="/2016/04/11/Python-collections/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/Python-collections/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,49 +300,164 @@ The record header处于数">
       
 
       
-        <p>原文地址:<br><a href="http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/" target="_blank" rel="external">The physical structure of records in InnoDB</a></p>
-<h3 id="Record-offsets"><a href="#Record-offsets" class="headerlink" title="Record offsets"></a>Record offsets</h3><p>记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。</p>
-<h3 id="The-record-header"><a href="#The-record-header" class="headerlink" title="The record header"></a>The record header</h3><p>处于数据记录前的记录头结构：<br><img src="/images/Record_Header.png" alt=""></p>
+        <p>python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：</p>
+<h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h2><p>dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。</p>
 <ul>
-<li>Next Record Offset: 当前页中，指向索引升序顺序中下一个数据记录的相对偏移量</li>
-<li><p>Record Type:记录类型，当前只支持4中类型：</p>
-<pre><code>conventional（0）
-node pointer（1）
-infimum（2）
-supremum（3）
+<li><p>初始化</p>
+<pre><code>&gt;&gt;&gt; from collections import Counter
+&gt;&gt;&gt; c=Counter()
+# list
+&gt;&gt;&gt; c=Counter([1,2])
+&gt;&gt;&gt; c
+Counter({1: 1, 2: 1})
+# 直接初始化计数
+&gt;&gt;&gt; c=Counter({&apos;a&apos;:2,&apos;b&apos;:3})
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 3, &apos;a&apos;: 2})
+&gt;&gt;&gt; c=Counter(a=2,b=10)
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 10, &apos;a&apos;: 2})
 </code></pre></li>
-<li>Order: 记录插入的顺序值。堆记录从0开始计数，Infimum 总是0， supremum总是1， 用户数据从2开始编号。</li>
-<li>Numver of Records Owned：在数据页目录本记录占用的记录数</li>
-<li><p>Info Flags: 存储记录布尔标志的4位位图。当前只定义了2个标志：</p>
-<pre><code>min_rec(1) 记录为B+tree中非叶节点中的最小值
-deleted(2) 删除标记
+<li><p>操作</p>
+<p>  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。</p>
+<pre><code>&gt;&gt;&gt; c[&apos;b&apos;]=20
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 20, &apos;a&apos;: 2})
+&gt;&gt;&gt; c.elements()
+&lt;itertools.chain object at 0x11027f290&gt;
+&gt;&gt;&gt; list(c.elements())
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;]
 </code></pre></li>
-<li>Nullable field  bitmap：对每一个可为null的列用一位进行标示是否null,如果某列为null，其列数据将被忽略；如果没有可为null的列，这个标志位将取消。</li>
-<li>Variable field lengths array: 由8位或16位整数（根据列的最大值定）组成的数组，记录数据列的长度。如果没有可变长列，此标志位取消。</li>
-</ul>
-<p>记录头占每行数据最小到5个字节，如果变长类很多，记录头的长度会大很多。</p>
-<h3 id="Clustered-indexes"><a href="#Clustered-indexes" class="headerlink" title="Clustered indexes"></a>Clustered indexes</h3><p>聚集索引记录结构：<br><img src="/images/Record_Clustered_Leaf.png" alt=""></p>
+<li><p>方法</p>
 <ul>
-<li><p>Cluster Key Fields：聚集索引列，串联在一起。InnoDB 使用内部存储引擎对没列的类型原始字节格式化成一个字节流</p>
+<li><p>elements <code>无序</code>返回所有元素，如果你想生成一个特定的list，这个方法很方便。</p>
+<pre><code>&gt;&gt;&gt; c=Counter(a=2,b=3,d=1)
+&gt;&gt;&gt; list(c.elements())
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;d&apos;]
+</code></pre></li>
+<li><p>most_common 按计数返回top n</p>
+<pre><code>&gt;&gt;&gt; c.most_common(1)
+[(&apos;b&apos;, 3)]
+</code></pre></li>
+<li><p>subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。</p>
+<pre><code>&gt;&gt;&gt; d=Counter(a=1,b=1,d=1,e=2)
+&gt;&gt;&gt; c.subtract(d)
+&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
+</code></pre></li>
+<li><p>update 同dict，不过Counter update的是计数值。</p>
+<pre><code>&gt;&gt;&gt; c
+Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
+&gt;&gt;&gt; c.update([&apos;a&apos;,&apos;d&apos;])
+&gt;&gt;&gt; c
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
+</code></pre><p>*其他 dict类包含的属性            </p>
 </li>
-<li><p>Transaction ID：48位，上一次更改记录数据的事务ID</p>
+</ul>
 </li>
-<li><p>Roll Pointer：包含记录了上一次更改记录数据的事务在回滚记录段中的位置信息的结构体。Roll Pointer 结构体包括：</p>
+<li><p>运算            </p>
+<ol>
+<li>加 对应key的计数相加，保留正数</li>
+<li>减 对应key的计数相加，保留正数</li>
+<li>交集 对应key的计数最小值，保留正数</li>
+<li><p>并集 对应key的计数最大值，保留正数 </p>
+<pre><code>&gt;&gt;&gt; c
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
+&gt;&gt;&gt; d
+Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})
+  &gt;&gt;&gt; c+d
+Counter({&apos;a&apos;: 2, &apos;b&apos;: 2, &apos;d&apos;: 1})
+&gt;&gt;&gt; c-d
+Counter()
+&gt;&gt;&gt; d-c
+Counter({&apos;e&apos;: 4, &apos;d&apos;: 1})
+&gt;&gt;&gt; c&amp;d
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1})
+&gt;&gt;&gt; c|d
+Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><p>对于常用的list类型，对列表中的元素进行插入，删除，以及添加，会涉及到列表的元素移动或者列表大小的变化。并且list只能从队列末端进行append和pop。</p>
+<p>双端队列deque 提供线程安全，内存性能，可从队列两端进行元素插入和删除的高速队列。首尾的快速操作可以做为动态的消息队列。</p>
+<p>deque的方法和list类似，多了对端的操作函数，比如append，appendleft。<br>其中maxlen属性用来控制队列最大长度，如果对一个满队列进行插入，则会通过推出对端相应数量的元素来完成。</p>
+<p>常用操作：</p>
+<pre><code>&gt;&gt;&gt; from collections import deque
+&gt;&gt;&gt; d=deque([1,2,3])
+&gt;&gt;&gt; d
+deque([1, 2, 3])
+&gt;&gt;&gt; d.append(&apos;a&apos;)
+&gt;&gt;&gt; d
+deque([1, 2, 3, &apos;a&apos;])
+&gt;&gt;&gt; d.appendleft(&apos;a&apos;)
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, 1, 2, 3, &apos;a&apos;])
+&gt;&gt;&gt; d[2]
+2
+&gt;&gt;&gt; d.reverse()
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, 3, 2, 1, &apos;a&apos;])
+&gt;&gt;&gt; d.rotate(1)
+&gt;&gt;&gt; d
+deque([&apos;a&apos;, &apos;a&apos;, 3, 2, 1])
+&gt;&gt;&gt; d.pop()
+1
+&gt;&gt;&gt; d.popleft()
+&apos;a&apos;
+&gt;&gt;&gt;
+</code></pre><h2 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h2><p>又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。</p>
+<pre><code>&gt;&gt;&gt; from collections import defaultdict
+&gt;&gt;&gt; d = defaultdict(list)
+&gt;&gt;&gt; d[&apos;newkey&apos;].append(&apos;list&apos;)
+&gt;&gt;&gt; d
+defaultdict(&lt;type &apos;list&apos;&gt;, {&apos;newkey&apos;: [&apos;list&apos;]})
+</code></pre><p>如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。</p>
+<h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h2><p>只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：</p>
 <ul>
-<li>1位的‘is insert’标识 </li>
-<li>7位的回滚端ID</li>
-<li>4位回滚页编号</li>
-<li>2位回滚页偏移量</li>
+<li>属性访问</li>
+<li>自解释</li>
+<li><p>快速转换</p>
+<pre><code>&gt;&gt;&gt; from collections import namedtuple
+&gt;&gt;&gt; Servers = namedtuple(&apos;servers&apos;, [&apos;ip&apos;,&apos;port&apos;])
+&gt;&gt;&gt; s = Servers(&apos;1.1.1.1&apos;, 22)
+&gt;&gt;&gt; s
+servers(ip=&apos;1.1.1.1&apos;, port=22)
+&gt;&gt;&gt; s.ip
+&apos;1.1.1.1&apos;
+&gt;&gt;&gt; s._asdict()
+OrderedDict([(&apos;ip&apos;, &apos;1.1.1.1&apos;), (&apos;port&apos;, 22)])
+&gt;&gt;&gt; s._replace(port=23)
+servers(ip=&apos;1.1.1.1&apos;, port=23)
+&gt;&gt;&gt; s._fields
+(&apos;ip&apos;, &apos;port&apos;)
+</code></pre></li>
 </ul>
-</li>
-<li>None-Key Fields 所有非主键数据，也就是实际的行数据，链接成一个字节流。</li>
+<p>namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。</p>
+<p>实例的初始化可以用_make函数，也可以直接<code>**dict</code>来完成。</p>
+<h3 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a>OrderedDict</h3><p>dict的子类，有序字典，顺序取决于元素的插入顺序，需要注意的是如果改变已插入的元素，该元素会的顺序将移到最后。</p>
+<pre><code>&gt;&gt;&gt; from collections import OrderedDict
+&gt;&gt;&gt; d = OrderedDict()
+&gt;&gt;&gt; d
+OrderedDict()
+&gt;&gt;&gt; d[&apos;2&apos;] =1
+&gt;&gt;&gt; d[&apos;1&apos;] =2
+&gt;&gt;&gt; d
+OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2)])
+&gt;&gt;&gt;
+&gt;&gt;&gt; a ={&apos;7&apos;:4,&apos;4&apos;:3}
+&gt;&gt;&gt; d.update(a)
+&gt;&gt;&gt; d
+OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2), (&apos;4&apos;, 3), (&apos;7&apos;, 4)])    
+&gt;&gt;&gt; e = OrderedDict(a)
+&gt;&gt;&gt; e
+OrderedDict([(&apos;4&apos;, 3), (&apos;7&apos;, 4)])
+</code></pre><p>和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Multiset" target="_blank" rel="external">多元组Multiset</a></li>
+<li><a href="https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type" target="_blank" rel="external">python data types</a></li>
+<li><a href="https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections" target="_blank" rel="external">python collections</a></li>
 </ul>
-<p>非页节点记录结构：<br><img src="/images/Record_Clustered_Non_Leaf.png" alt=""><br>由于非页节点不是MVCC，事务ID和回滚指针都被取消。存在实际数据的列改为存放子节点的指针。由于聚集索引不能为NULL，null标识位也被取消。</p>
-<h3 id="Secondary-indexes"><a href="#Secondary-indexes" class="headerlink" title="Secondary indexes"></a>Secondary indexes</h3><p>InnoDB的二级索引和聚集索引的结构一样，只是在聚集索引存放非键值列（叶节点）的空间，二级索引存放的是主键信息（PKV，主键值）。如果二级索引和主键出现重复的列，二级索引中只存放非重复的部分。例如，表的主键为（a,b,c），二级索引为（a,d），则二级索引中存放（a,d），则PKVs中存放（b,c）.</p>
-<p>由于二级索引的列允许非唯一和可为空，则可变长段和null标识位都可能有值。所以页节点的结构很简单：<br><img src="/images/Record_Secondary_Leaf.png" alt=""><br>同聚集索引一样，二级索引中的这些段连接成一个字节流。</p>
-<p>非叶节点的结构：</p>
-<p><img src="/images/Record_Secondary_Non_Leaf.png" alt=""><br>二级索引的非叶节点有一点需要注意：记录中包含了主键值（PKV），并作为键值的一部分。二级索引允许为非唯一和可为空，则每一个记录都需要一个唯一标识，所以使用主键值来确保唯一性。这意味着二级索引中的非叶节点占用空间比他们的页节点大4个字节。</p>
-<h3 id="空间开销"><a href="#空间开销" class="headerlink" title="空间开销"></a>空间开销</h3><p>从上面的结构图，很容易计算出InnoDB每一行的空间占用。聚集索引叶节点需要最小5字节的记录头，6字节的事务ID，7字节的回滚指针，每行一共18字节。对于比较小的表，比如只有2-3列整数列，空间浪费比例很大。<br>另外，在每一页的空间额外开销比例也很大，主要消耗在需要大量空间的无效页的填充上。</p>
 
       
     </div>
@@ -386,9 +466,9 @@ deleted(2) 删除标记
       
         <div class="post-tags">
           
-            <a href="/tags/InnoDB/" rel="tag">#InnoDB</a>
+            <a href="/tags/collections/" rel="tag">#collections</a>
           
-            <a href="/tags/record/" rel="tag">#record</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -397,16 +477,16 @@ deleted(2) 删除标记
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/31/The-physical-structure-of-InnoDB-index-pages/" rel="next" title="The physical structure of InnoDB index pages">
-                <i class="fa fa-chevron-left"></i> The physical structure of InnoDB index pages
+              <a href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/" rel="next" title="The physical structure of records in InnoDB">
+                <i class="fa fa-chevron-left"></i> The physical structure of records in InnoDB
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/11/Python-collections/" rel="prev" title="Python collections">
-                Python collections <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/14/Python-One-line/" rel="prev" title="Python One line">
+                Python One line <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -433,8 +513,8 @@ deleted(2) 删除标记
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/05/The-physical-structure-of-records-in-InnoDB/"
-           data-title="The physical structure of records in InnoDB" data-url="www.www.com/2016/04/05/The-physical-structure-of-records-in-InnoDB/">
+      <div class="ds-thread" data-thread-key="2016/04/11/Python-collections/"
+           data-title="Python collections" data-url="www.www.com/2016/04/11/Python-collections/">
       </div>
     
   </div>
@@ -546,7 +626,7 @@ deleted(2) 删除标记
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Record-offsets"><span class="nav-number">1.</span> <span class="nav-text">Record offsets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-record-header"><span class="nav-number">2.</span> <span class="nav-text">The record header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clustered-indexes"><span class="nav-number">3.</span> <span class="nav-text">Clustered indexes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Secondary-indexes"><span class="nav-number">4.</span> <span class="nav-text">Secondary indexes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间开销"><span class="nav-number">5.</span> <span class="nav-text">空间开销</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Counter"><span class="nav-number">1.</span> <span class="nav-text">Counter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deque"><span class="nav-number">2.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defaultdict"><span class="nav-number">3.</span> <span class="nav-text">defaultdict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#namedtuple"><span class="nav-number">4.</span> <span class="nav-text">namedtuple</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OrderedDict"><span class="nav-number">4.1.</span> <span class="nav-text">OrderedDict</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

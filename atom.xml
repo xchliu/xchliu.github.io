@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.www.com/"/>
-  <updated>2016-04-11T11:19:07.000Z</updated>
+  <updated>2016-04-14T11:03:21.000Z</updated>
   <id>www.www.com/</id>
   
   <author>
@@ -14,6 +14,205 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python One line</title>
+    <link href="www.www.com/2016/04/14/Python-One-line/"/>
+    <id>www.www.com/2016/04/14/Python-One-line/</id>
+    <published>2016-04-14T11:03:21.000Z</published>
+    <updated>2016-04-14T11:03:21.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python collections</title>
+    <link href="www.www.com/2016/04/11/Python-collections/"/>
+    <id>www.www.com/2016/04/11/Python-collections/</id>
+    <published>2016-04-11T10:13:00.000Z</published>
+    <updated>2016-04-18T10:41:29.000Z</updated>
+    
+    <content type="html">&lt;p&gt;python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：&lt;/p&gt;
+&lt;h2 id=&quot;Counter&quot;&gt;&lt;a href=&quot;#Counter&quot; class=&quot;headerlink&quot; title=&quot;Counter&quot;&gt;&lt;/a&gt;Counter&lt;/h2&gt;&lt;p&gt;dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;初始化&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import Counter
+&amp;gt;&amp;gt;&amp;gt; c=Counter()
+# list
+&amp;gt;&amp;gt;&amp;gt; c=Counter([1,2])
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({1: 1, 2: 1})
+# 直接初始化计数
+&amp;gt;&amp;gt;&amp;gt; c=Counter({&amp;apos;a&amp;apos;:2,&amp;apos;b&amp;apos;:3})
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;b&amp;apos;: 3, &amp;apos;a&amp;apos;: 2})
+&amp;gt;&amp;gt;&amp;gt; c=Counter(a=2,b=10)
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;b&amp;apos;: 10, &amp;apos;a&amp;apos;: 2})
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;操作&lt;/p&gt;
+&lt;p&gt;  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c[&amp;apos;b&amp;apos;]=20
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;b&amp;apos;: 20, &amp;apos;a&amp;apos;: 2})
+&amp;gt;&amp;gt;&amp;gt; c.elements()
+&amp;lt;itertools.chain object at 0x11027f290&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; list(c.elements())
+[&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;elements &lt;code&gt;无序&lt;/code&gt;返回所有元素，如果你想生成一个特定的list，这个方法很方便。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c=Counter(a=2,b=3,d=1)
+&amp;gt;&amp;gt;&amp;gt; list(c.elements())
+[&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;d&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;most_common 按计数返回top n&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c.most_common(1)
+[(&amp;apos;b&amp;apos;, 3)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; d=Counter(a=1,b=1,d=1,e=2)
+&amp;gt;&amp;gt;&amp;gt; c.subtract(d)
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;b&amp;apos;: 1, &amp;apos;a&amp;apos;: 0, &amp;apos;d&amp;apos;: -1, &amp;apos;e&amp;apos;: -2})
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;update 同dict，不过Counter update的是计数值。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;b&amp;apos;: 1, &amp;apos;a&amp;apos;: 0, &amp;apos;d&amp;apos;: -1, &amp;apos;e&amp;apos;: -2})
+&amp;gt;&amp;gt;&amp;gt; c.update([&amp;apos;a&amp;apos;,&amp;apos;d&amp;apos;])
+&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 0, &amp;apos;e&amp;apos;: -2})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;*其他 dict类包含的属性            &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;运算            &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加 对应key的计数相加，保留正数&lt;/li&gt;
+&lt;li&gt;减 对应key的计数相加，保留正数&lt;/li&gt;
+&lt;li&gt;交集 对应key的计数最小值，保留正数&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;并集 对应key的计数最大值，保留正数 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c
+Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 0, &amp;apos;e&amp;apos;: -2})
+&amp;gt;&amp;gt;&amp;gt; d
+Counter({&amp;apos;e&amp;apos;: 2, &amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 1})
+  &amp;gt;&amp;gt;&amp;gt; c+d
+Counter({&amp;apos;a&amp;apos;: 2, &amp;apos;b&amp;apos;: 2, &amp;apos;d&amp;apos;: 1})
+&amp;gt;&amp;gt;&amp;gt; c-d
+Counter()
+&amp;gt;&amp;gt;&amp;gt; d-c
+Counter({&amp;apos;e&amp;apos;: 4, &amp;apos;d&amp;apos;: 1})
+&amp;gt;&amp;gt;&amp;gt; c&amp;amp;d
+Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1})
+&amp;gt;&amp;gt;&amp;gt; c|d
+Counter({&amp;apos;e&amp;apos;: 2, &amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 1})
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;deque&quot;&gt;&lt;a href=&quot;#deque&quot; class=&quot;headerlink&quot; title=&quot;deque&quot;&gt;&lt;/a&gt;deque&lt;/h2&gt;&lt;p&gt;对于常用的list类型，对列表中的元素进行插入，删除，以及添加，会涉及到列表的元素移动或者列表大小的变化。并且list只能从队列末端进行append和pop。&lt;/p&gt;
+&lt;p&gt;双端队列deque 提供线程安全，内存性能，可从队列两端进行元素插入和删除的高速队列。首尾的快速操作可以做为动态的消息队列。&lt;/p&gt;
+&lt;p&gt;deque的方法和list类似，多了对端的操作函数，比如append，appendleft。&lt;br&gt;其中maxlen属性用来控制队列最大长度，如果对一个满队列进行插入，则会通过推出对端相应数量的元素来完成。&lt;/p&gt;
+&lt;p&gt;常用操作：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import deque
+&amp;gt;&amp;gt;&amp;gt; d=deque([1,2,3])
+&amp;gt;&amp;gt;&amp;gt; d
+deque([1, 2, 3])
+&amp;gt;&amp;gt;&amp;gt; d.append(&amp;apos;a&amp;apos;)
+&amp;gt;&amp;gt;&amp;gt; d
+deque([1, 2, 3, &amp;apos;a&amp;apos;])
+&amp;gt;&amp;gt;&amp;gt; d.appendleft(&amp;apos;a&amp;apos;)
+&amp;gt;&amp;gt;&amp;gt; d
+deque([&amp;apos;a&amp;apos;, 1, 2, 3, &amp;apos;a&amp;apos;])
+&amp;gt;&amp;gt;&amp;gt; d[2]
+2
+&amp;gt;&amp;gt;&amp;gt; d.reverse()
+&amp;gt;&amp;gt;&amp;gt; d
+deque([&amp;apos;a&amp;apos;, 3, 2, 1, &amp;apos;a&amp;apos;])
+&amp;gt;&amp;gt;&amp;gt; d.rotate(1)
+&amp;gt;&amp;gt;&amp;gt; d
+deque([&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, 3, 2, 1])
+&amp;gt;&amp;gt;&amp;gt; d.pop()
+1
+&amp;gt;&amp;gt;&amp;gt; d.popleft()
+&amp;apos;a&amp;apos;
+&amp;gt;&amp;gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;defaultdict&quot;&gt;&lt;a href=&quot;#defaultdict&quot; class=&quot;headerlink&quot; title=&quot;defaultdict&quot;&gt;&lt;/a&gt;defaultdict&lt;/h2&gt;&lt;p&gt;又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import defaultdict
+&amp;gt;&amp;gt;&amp;gt; d = defaultdict(list)
+&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;newkey&amp;apos;].append(&amp;apos;list&amp;apos;)
+&amp;gt;&amp;gt;&amp;gt; d
+defaultdict(&amp;lt;type &amp;apos;list&amp;apos;&amp;gt;, {&amp;apos;newkey&amp;apos;: [&amp;apos;list&amp;apos;]})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。&lt;/p&gt;
+&lt;h2 id=&quot;namedtuple&quot;&gt;&lt;a href=&quot;#namedtuple&quot; class=&quot;headerlink&quot; title=&quot;namedtuple&quot;&gt;&lt;/a&gt;namedtuple&lt;/h2&gt;&lt;p&gt;只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;属性访问&lt;/li&gt;
+&lt;li&gt;自解释&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;快速转换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import namedtuple
+&amp;gt;&amp;gt;&amp;gt; Servers = namedtuple(&amp;apos;servers&amp;apos;, [&amp;apos;ip&amp;apos;,&amp;apos;port&amp;apos;])
+&amp;gt;&amp;gt;&amp;gt; s = Servers(&amp;apos;1.1.1.1&amp;apos;, 22)
+&amp;gt;&amp;gt;&amp;gt; s
+servers(ip=&amp;apos;1.1.1.1&amp;apos;, port=22)
+&amp;gt;&amp;gt;&amp;gt; s.ip
+&amp;apos;1.1.1.1&amp;apos;
+&amp;gt;&amp;gt;&amp;gt; s._asdict()
+OrderedDict([(&amp;apos;ip&amp;apos;, &amp;apos;1.1.1.1&amp;apos;), (&amp;apos;port&amp;apos;, 22)])
+&amp;gt;&amp;gt;&amp;gt; s._replace(port=23)
+servers(ip=&amp;apos;1.1.1.1&amp;apos;, port=23)
+&amp;gt;&amp;gt;&amp;gt; s._fields
+(&amp;apos;ip&amp;apos;, &amp;apos;port&amp;apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。&lt;/p&gt;
+&lt;p&gt;实例的初始化可以用_make函数，也可以直接&lt;code&gt;**dict&lt;/code&gt;来完成。&lt;/p&gt;
+&lt;h3 id=&quot;OrderedDict&quot;&gt;&lt;a href=&quot;#OrderedDict&quot; class=&quot;headerlink&quot; title=&quot;OrderedDict&quot;&gt;&lt;/a&gt;OrderedDict&lt;/h3&gt;&lt;p&gt;dict的子类，有序字典，顺序取决于元素的插入顺序，需要注意的是如果改变已插入的元素，该元素会的顺序将移到最后。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import OrderedDict
+&amp;gt;&amp;gt;&amp;gt; d = OrderedDict()
+&amp;gt;&amp;gt;&amp;gt; d
+OrderedDict()
+&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;2&amp;apos;] =1
+&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;1&amp;apos;] =2
+&amp;gt;&amp;gt;&amp;gt; d
+OrderedDict([(&amp;apos;2&amp;apos;, 1), (&amp;apos;1&amp;apos;, 2)])
+&amp;gt;&amp;gt;&amp;gt;
+&amp;gt;&amp;gt;&amp;gt; a ={&amp;apos;7&amp;apos;:4,&amp;apos;4&amp;apos;:3}
+&amp;gt;&amp;gt;&amp;gt; d.update(a)
+&amp;gt;&amp;gt;&amp;gt; d
+OrderedDict([(&amp;apos;2&amp;apos;, 1), (&amp;apos;1&amp;apos;, 2), (&amp;apos;4&amp;apos;, 3), (&amp;apos;7&amp;apos;, 4)])    
+&amp;gt;&amp;gt;&amp;gt; e = OrderedDict(a)
+&amp;gt;&amp;gt;&amp;gt; e
+OrderedDict([(&amp;apos;4&amp;apos;, 3), (&amp;apos;7&amp;apos;, 4)])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Multiset&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多元组Multiset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python data types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python collections&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：&lt;/p&gt;
+&lt;h2 id=&quot;Counter&quot;&gt;&lt;a href=&quot;#Counter&quot; class=&quot;heade
+    
+    </summary>
+    
+      <category term="python" scheme="www.www.com/categories/python/"/>
+    
+    
+      <category term="collections" scheme="www.www.com/tags/collections/"/>
+    
+      <category term="python" scheme="www.www.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>The physical structure of records in InnoDB</title>
@@ -206,7 +405,7 @@ deleted(2) 删除标记
     <link href="www.www.com/2016/03/24/InnoDB-Primary-key/"/>
     <id>www.www.com/2016/03/24/InnoDB-Primary-key/</id>
     <published>2016-03-24T10:25:04.000Z</published>
-    <updated>2016-04-01T06:09:27.000Z</updated>
+    <updated>2016-04-01T06:09:33.000Z</updated>
     
     <content type="html">&lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
