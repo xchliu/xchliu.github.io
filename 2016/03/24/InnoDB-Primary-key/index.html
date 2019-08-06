@@ -1,342 +1,117 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="InnoDB,Primary,key," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
-
-
-
-
-
-
-
-
-
-<meta name="description" content="随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：
-CREATE TABLE `t_t` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  ...
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB 
-为什么InnoDB需要一个自增">
-<meta property="og:type" content="article">
-<meta property="og:title" content="InnoDB Primary key">
-<meta property="og:url" content="www.www.com/2016/03/24/InnoDB-Primary-key/index.html">
-<meta property="og:site_name">
-<meta property="og:description" content="随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：
-CREATE TABLE `t_t` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  ...
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB 
-为什么InnoDB需要一个自增">
-<meta property="og:updated_time" content="2016-04-01T06:09:33.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="InnoDB Primary key">
-<meta name="twitter:description" content="随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：
-CREATE TABLE `t_t` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  ...
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB 
-为什么InnoDB需要一个自增">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: 'Author'
-    }
-  };
-</script>
-
-  <title> InnoDB Primary key |  </title>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content>
+    <link rel="shortcut icon" href="http://some.url/to/favicon.ico">
+    <title>InnoDB Primary key-tiny's blog</title>
+    
+        
+            <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+        
+    
+    <link rel="stylesheet" href="/css/adagio.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?98cf4c05bee063e29aa7986e36708f4f";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title"></span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+<body>
+    <div class="container-fluid">
+    <nav class="nav">
+        <div class="collapse navbar-collapse" id="navbar-sm">
             
             
-              
-                InnoDB Primary key
-              
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link">Tiny's Blog</a>
+            </div>
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-03-24T18:25:04+08:00" content="2016-03-24">
-              2016-03-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/InnoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">InnoDB</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/InnoDB/Optimize/" itemprop="url" rel="index">
-                    <span itemprop="name">Optimize</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/24/InnoDB-Primary-key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/24/InnoDB-Primary-key/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
         </div>
-      </header>
-    
+    </nav>
+</div>
+
+<div class="d-flex d-md-none" style="width: 100%; background-color: #e9ecef">
+    <div class="nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sm"
+            aria-expanded="false" aria-label="Toggle Navigation">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
+    </div>
+    <nav class="navbar ml-auto">
+        <a class="navbar-brand" href="/">
+            
+            <img class="logo" src="https://via.placeholder.com/100x50.png?text=logo" />
+            
+        </a>
+    </nav>
+</div>
 
 
-    <div class="post-body" itemprop="articleBody">
+<div class="container d-none d-md-block my-navbar">
+    <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
+        <a class="navbar-brand " href="/">
+            
+            <img class="logo" src="https://via.placeholder.com/100x50.png?text=logo" />
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item pl-2 pr-2 ">
+                    <a class="nav-link" href="/">Tiny's Blog</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</div>
 
-      
-      
 
-      
-        <p>随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：</p>
+
+
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        
+        <h1 class="mt-4 article-title page-title">InnoDB Primary key</h1>
+        
+        <p class="lead text-gray mt-3"> 2016-03-24 @ Tiny  </p>
+        
+        <div class="tags">
+            <ul class="tag-list">
+                
+                <li class="tag-list-item">
+                    <a class="tag-list-link" href="/tags/InnoDB/">InnoDB</a>
+                </li>
+                
+                <li class="tag-list-item">
+                    <a class="tag-list-link" href="/tags/Primary/">Primary</a>
+                </li>
+                
+                <li class="tag-list-item">
+                    <a class="tag-list-link" href="/tags/key/">key</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 pt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <main>
+                            <article class="article-text page-content"><p>随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：</p>
 <pre><code>CREATE TABLE `t_t` (
   `id` int NOT NULL AUTO_INCREMENT,
   ...
   PRIMARY KEY (`id`),
-) ENGINE=InnoDB 
-</code></pre><p>为什么InnoDB需要一个自增主键？或许有以下的答案：</p>
+) ENGINE=InnoDB </code></pre><p>为什么InnoDB需要一个自增主键？或许有以下的答案：</p>
 <ul>
 <li>应该这样    </li>
 <li>大家都这么做，自然有他的好处</li>
@@ -349,16 +124,16 @@ CREATE TABLE `t_t` (
 <li>表体积（data，index）</li>
 <li>更改主键需要重建表</li>
 <li>隐藏主键</li>
-<li><a href="">聚集索引(clusterd index)</a></li>
-<li><a href="">B+ tree</a></li>
+<li><a href>聚集索引(clusterd index)</a></li>
+<li><a href>B+ tree</a></li>
 <li>二级索引</li>
-<li><a href="http://xchliu.github.io/2016/03/31/The-physical-structure-of-InnoDB-index-pages/" target="_blank" rel="external">物理结构</a></li>
+<li><a href="http://xchliu.github.io/2016/03/31/The-physical-structure-of-InnoDB-index-pages/" target="_blank" rel="noopener">物理结构</a></li>
 </ul>
 <h3 id="统一规范"><a href="#统一规范" class="headerlink" title="统一规范"></a>统一规范</h3><p>很多情况下，表的自增主键已经成为了InnoDB的建表规范，而这个规范的来源，不管是经验，还是通过测试数据对比，或者是重点在“统一“上，这样做都带来若干的好处：</p>
 <ul>
 <li>建立参考基准，这一类还包括MySQL目录分配，基准配置，命名规范等。生产线采用符合基准的部署策略，对于初期部署，日常管理都会有很大的效率提升。</li>
 <li>业务。关系型数据库中，范式作为解除集合函数依赖的法则，实体经常会在最终形成独立数据表，而最多的情况是，实例的属性中并没有能够唯一标识集合的key，比如user name，那么此时的自增主键就可以完美成为主键。说到范式，经常听到反（三）范式设计，范式只有满足与不满足，它既不是公理也不是真理，没有违反一说，在保证数据完整性的原则上做出任何手段的拆表都是可行的。</li>
-<li>沟通成本。很多时候都会被问到，为什么要有建自增主键啊，32位md5行不行，64位uuid行不行，128位hash行不行。假设这个沟通结果为达成一致比例是7/10。单次消耗时间为t（因人而异），那么一段时间内花在这个点上的时间是t <em> n，并且，其中 t </em> n * 0.3为无效沟通。有了统一规范，自然沟通的成本就降低了。</li>
+<li>沟通成本。很多时候都会被问到，为什么要有建自增主键啊，32位md5行不行，64位uuid行不行，128位hash行不行。假设这个沟通结果为达成一致比例是7/10。单次消耗时间为t（因人而异），那么一段时间内花在这个点上的时间是t * n，并且，其中 t * n * 0.3为无效沟通。有了统一规范，自然沟通的成本就降低了。</li>
 <li>还有一个好处，让越来越多的人认为就应该如此。：）</li>
 </ul>
 <h3 id="查询效率"><a href="#查询效率" class="headerlink" title="查询效率"></a>查询效率</h3><p>对于上面提到的0.3，可能需要进一步的论据来支持。那怎么办？<code>talk is cheap, show me the code</code>。 同理，只能拿数据说话，能动手的时候坚决不动口。做一个对比的压力测试，当然是选择性能更好的方式。</p>
@@ -369,9 +144,9 @@ CREATE TABLE `t_t` (
 </ol>
 <h3 id="运维依赖"><a href="#运维依赖" class="headerlink" title="运维依赖"></a>运维依赖</h3><ul>
 <li>管理工具。日常维护脚本工具对主键的依赖。</li>
-<li>第三方工具，比如pecona toolkit（<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-online-schema-change.html" target="_blank" rel="external">pt-online-schema-change
-</a>，<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html" target="_blank" rel="external">pt-table-checksum</a>）</li>
-<li>高可用架构对显式定义主键的依赖：<a href="https://www.percona.com/software/mysql-database/percona-xtradb-cluster" target="_blank" rel="external">Percona XtraDB Cluster</a></li>
+<li>第三方工具，比如pecona toolkit（<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-online-schema-change.html" target="_blank" rel="noopener">pt-online-schema-change
+</a>，<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html" target="_blank" rel="noopener">pt-table-checksum</a>）</li>
+<li>高可用架构对显式定义主键的依赖：<a href="https://www.percona.com/software/mysql-database/percona-xtradb-cluster" target="_blank" rel="noopener">Percona XtraDB Cluster</a></li>
 </ul>
 <h3 id="表体积"><a href="#表体积" class="headerlink" title="表体积"></a>表体积</h3><p>表级的优化，很重要的一点是保证数据表处于最紧凑，体积最小的状态，尽可能占用最小的空间，减少碎片空间，在进行数据检索时，占用更少的IO资源，自然查询的效率就提升了。</p>
 <p>表的体积：cluster index ，secondary index</p>
@@ -384,15 +159,13 @@ CREATE TABLE `t_t` (
      signed -9223372036854775808 to9223372036854775807
  隐藏主键  6 bypes  
      48位
- 自定义（uuid） len(key) +1 
-</code></pre><ol>
+ 自定义（uuid） len(key) +1 </code></pre><ol>
 <li>所有的二级索引存放的是所依赖的主键信息，主键大小直接影响二级索引的大小。 </li>
 <li>主键的空间占用：int &lt; 隐藏主键 &lt; bigint &lt; 自定义</li>
 <li>InnoDB 使用主键来作为cluster index来形成整个索引树，单调递增的整数在b+ tree的形成，遍历，分裂，性能最优。需要注意的是，int 和bigint都是有限的取值域。</li>
 </ol>
 <h3 id="隐藏主键"><a href="#隐藏主键" class="headerlink" title="隐藏主键"></a>隐藏主键</h3><pre><code>If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index on a synthetic column containing row ID values.
- The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.
-</code></pre><p>对于每一个InnoDB表，InnoDB都需要一个cluster key来组织表数据，一般情况下是主键（PRIMAYR KEY）.如果用户没有指定主键，如果表中没有唯一性约束且有NOT NULL属性的数据列，InnoDB会创建一个6个字节隐藏主键列作为cluter key，这个隐藏主键（ROW_ID）在数据插入时根据全局序列单调递增,这个ROW_ID对用户不可见，也不会用于内部功能（行级复制）。</p>
+ The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.</code></pre><p>对于每一个InnoDB表，InnoDB都需要一个cluster key来组织表数据，一般情况下是主键（PRIMAYR KEY）.如果用户没有指定主键，如果表中没有唯一性约束且有NOT NULL属性的数据列，InnoDB会创建一个6个字节隐藏主键列作为cluter key，这个隐藏主键（ROW_ID）在数据插入时根据全局序列单调递增,这个ROW_ID对用户不可见，也不会用于内部功能（行级复制）。</p>
 <h4 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h4><p>在系统表空间中的数据字典中记录了所有ID的当前可用最大值, 可以理解为max(ID)+step, 这个全局的计算器就根据它来分配ID。</p>
 <pre><code>file: include/dict0boot.ic
 38  UNIV_INLINE
@@ -411,465 +184,219 @@ CREATE TABLE `t_t` (
 56          mutex_exit(&amp;(dict_sys-&gt;mutex));
 57  
 58          return(id);
-59  }
-</code></pre><p>全局序列使用dict_sys-&gt;mutex 互斥锁进行保护，即使是增值（和原子递增相反）。实现中并没有对ID值超过48位的溢出问题做保护处理，但是假设一个每秒100万的插入量也需要9年左右才能耗尽ID的取值域。</p>
+59  }</code></pre><p>全局序列使用dict_sys-&gt;mutex 互斥锁进行保护，即使是增值（和原子递增相反）。实现中并没有对ID值超过48位的溢出问题做保护处理，但是假设一个每秒100万的插入量也需要9年左右才能耗尽ID的取值域。</p>
 <h4 id="冲突的保护"><a href="#冲突的保护" class="headerlink" title="冲突的保护"></a>冲突的保护</h4><p>DICT_HDR_ROW_ID_WRITE_MARGIN(256) 这个值决定了序列的落盘机制，如果取得的id对DICT_HDR_ROW_ID_WRITE_MARGIN取模为0（倍数），就修改数据字典中SYS中的DICT_HDR_ROW_ID并flush disk。InnoDB启动时，InnoDB会将磁盘上DICT_HDR_ROW_ID的增加到256-511范围内。这样就保证了已经产生的ID都小于当前的起始值，也就不会造成ID冲突。</p>
 <h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><ul>
 <li>在InnoDB的代码中很多地方都使用到dict_sys-&gt;mutex。如果这个锁被占用（如drop table）， 那么包含隐藏主键的InnoDB表的插入操作将受到阻塞。</li>
 <li>ROW_ID的分配时，共享的互斥锁和全局共享计数器都需要序列化，这也会形成性能瓶颈，如果对包含隐藏主键进行并发插入，其性能必然下降。</li>
 <li>无论事务是否提交，每DICT_HDR_ROW_ID_WRITE_MARGIN个ROW_ID分配，都会进行SYS的刷盘操作，磁盘本身就是数据库系统中硬件短板，大多数优化手段都会将减少磁盘IO作为重要的考虑因素，使用隐藏主键自然会增加IO负载。</li>
 </ul>
-<p>关于隐藏主键：<a href="http://blog.jcole.us/2013/05/02/how-does-innodb-behave-without-a-primary-key/" target="_blank" rel="external">How does InnoDB behave without a Primary Key?</a></p>
-<p>长主键： <a href="https://www.percona.com/blog/2006/10/03/long-primary-key-for-innodb-tables/" target="_blank" rel="external">Long PRIMARY KEY for Innodb tables</a></p>
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/InnoDB/" rel="tag">#InnoDB</a>
-          
-            <a href="/tags/Primary/" rel="tag">#Primary</a>
-          
-            <a href="/tags/key/" rel="tag">#key</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/25/2013-09-27-hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/03/24/InnoDB-Primary-key/"
-           data-title="InnoDB Primary key" data-url="www.www.com/2016/03/24/InnoDB-Primary-key/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/self.jpg"
-               alt="Xchliu" />
-          <p class="site-author-name" itemprop="name">Xchliu</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
-          
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
+<p>关于隐藏主键：<a href="http://blog.jcole.us/2013/05/02/how-does-innodb-behave-without-a-primary-key/" target="_blank" rel="noopener">How does InnoDB behave without a Primary Key?</a></p>
+<p>长主键： <a href="https://www.percona.com/blog/2006/10/03/long-primary-key-for-innodb-tables/" target="_blank" rel="noopener">Long PRIMARY KEY for Innodb tables</a></p>
+</article>
+                        </main>
+                        
+                        
+                    </div>
+                </div>
+                <div class="row mt-5 mb-5">
+                    <div class="col-12">
+                        <div class="row">
+    <div class="col">
+        <nav aria-label="paginator" class="paginator">
+            <ul class="pagination d-none d-md-flex pagination-lg justify-content-center">
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/03/31/The-physical-structure-of-InnoDB-index-pages/"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;
+                            The physical structure of InnoDB index pages</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/02/26/2013-09-27-hello-world/"
+                        aria-label="Next">
+                        <span
+                            aria-hidden="true">Hello World
+                            &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pagination d-md-none justify-content-center">
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/03/31/The-physical-structure-of-InnoDB-index-pages/"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;
+                            The physical structure of InnoDB index pages</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/02/26/2013-09-27-hello-world/"
+                        aria-label="Next">
+                        <span
+                            aria-hidden="true">Hello World
+                            &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/xchliu" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#统一规范"><span class="nav-number">1.</span> <span class="nav-text">统一规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询效率"><span class="nav-number">2.</span> <span class="nav-text">查询效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运维依赖"><span class="nav-number">3.</span> <span class="nav-text">运维依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表体积"><span class="nav-number">4.</span> <span class="nav-text">表体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏主键"><span class="nav-number">5.</span> <span class="nav-text">隐藏主键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分配策略"><span class="nav-number">5.1.</span> <span class="nav-text">分配策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#冲突的保护"><span class="nav-number">5.2.</span> <span class="nav-text">冲突的保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-number">5.3.</span> <span class="nav-text">性能</span></a></li></ol></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
     </div>
-  </aside>
+</div>
 
 
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="vcomment"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="container pt-4 page-sidebar">
+                    
+                    <hr class="row">
+                    <div class="row toc-container">
+                        <div class="col-12">
+                            <h6>NAVIGATION</h6>
+                            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#统一规范"><span class="toc-text">统一规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询效率"><span class="toc-text">查询效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运维依赖"><span class="toc-text">运维依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表体积"><span class="toc-text">表体积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏主键"><span class="toc-text">隐藏主键</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分配策略"><span class="toc-text">分配策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#冲突的保护"><span class="toc-text">冲突的保护</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#性能"><span class="toc-text">性能</span></a></li></ol></li></ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div class="jumbotron jumbotron-fluid mb-0">
+        <div class="container-fluid">
+            <div class="col text-center">
+                <div class="bottom-social">
+                    <div class="row">
+    <div class="col text-center">
+        <ul class="list-inline">
+            
+            <li class="list-inline-item">
+                
+                <a href="https://github.com/xchliu">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.facebook.com/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.pinterest.com/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-pinterest-p fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.linkedin.com/in/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+                </div>
+                <p class="copyright text-muted">
+                    Copyright &copy; 
+                    <br>
+                    Thanks for coming!
+                    <br>
+                    <a href="https://github.com/Hanlin-Dong/hexo-theme-adagio">Adagio</a> - A <a href="https://hexo.io">Hexo</a> theme made with love by
+                    <a href="http://www.hanlindong.com">Hanlin Dong</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+    
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.bootcss.com/font-awesome/5.9.0/js/all.min.js"></script>
+         
+            <script type="text/x-mathjax-config">
+                MathJax.Hub.Config({
+                    CommonHTML: { linebreaks: { automatic: true } },
+                    "HTML-CSS": { linebreaks: { automatic: true } },
+                    SVG: { linebreaks: { automatic: true } }
+                });
+            </script>
+            <script src='https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Xchliu</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+    
 
 
+<script src="/js/av.min.js"></script>
+<script src="/js/valine.min.js"></script>
+<script src="/js/applause-easy.js"></script>
 
-      </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  
-
-
-  
-
-
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
-
-  
-  
-
-  
-  
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
+<script>
+$(document).ready(function() {
+    var a = new ApplauseEasy({
+        id: 'applause-easy',
+        appId: "xxxxxxxxxx",
+        appKey: "xxxxxxxxxx",
+        img_src: "http://img.hanlindong.com/blog/site/clap.png",
+        img_width: "50px",
+        img_height: "50px"
+    })
+})
 </script>
 
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-
-
-  
-
-  
     
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"xchliu"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
+    <script>
+    new Valine({
+        el: "#vcomment",
+        appId: "xxxxxxxxxx",
+        appKey: "xxxxxxxxxx",
+        notify: false,
+        varify: false,
+        avatar: 'identicon',
+        placeholder: "",
+        recordIP: true
+    })
+</script>
     
-  
-
-
-
-
-
-  
-  
-
-  
-  
-
-
 </body>
 </html>

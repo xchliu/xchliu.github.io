@@ -1,306 +1,108 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="collections,python," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml" />
-
-
-
-
-
-
-
-
-
-<meta name="description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
-Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
-
-初始化
-&amp;gt;&amp;gt;&amp;gt; from collections im">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python collections">
-<meta property="og:url" content="www.www.com/2016/04/11/Python-collections/index.html">
-<meta property="og:site_name">
-<meta property="og:description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
-Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
-
-初始化
-&amp;gt;&amp;gt;&amp;gt; from collections im">
-<meta property="og:updated_time" content="2016-04-18T10:41:29.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python collections">
-<meta name="twitter:description" content="python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：
-Counterdict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。
-
-初始化
-&amp;gt;&amp;gt;&amp;gt; from collections im">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: 'Author'
-    }
-  };
-</script>
-
-  <title> Python collections |  </title>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content>
+    <link rel="shortcut icon" href="http://some.url/to/favicon.ico">
+    <title>Python collections-tiny's blog</title>
+    
+        
+            <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+            <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+        
+    
+    <link rel="stylesheet" href="/css/adagio.css">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?98cf4c05bee063e29aa7986e36708f4f";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title"></span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+<body>
+    <div class="container-fluid">
+    <nav class="nav">
+        <div class="collapse navbar-collapse" id="navbar-sm">
             
             
-              
-                Python collections
-              
+            <div class="navbar-nav">
+                <a href="/" class="nav-item nav-link">Tiny's Blog</a>
+            </div>
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T18:13:00+08:00" content="2016-04-11">
-              2016-04-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/11/Python-collections/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/Python-collections/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
         </div>
-      </header>
-    
+    </nav>
+</div>
+
+<div class="d-flex d-md-none" style="width: 100%; background-color: #e9ecef">
+    <div class="nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-sm"
+            aria-expanded="false" aria-label="Toggle Navigation">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
+    </div>
+    <nav class="navbar ml-auto">
+        <a class="navbar-brand" href="/">
+            
+            <img class="logo" src="https://via.placeholder.com/100x50.png?text=logo" />
+            
+        </a>
+    </nav>
+</div>
 
 
-    <div class="post-body" itemprop="articleBody">
+<div class="container d-none d-md-block my-navbar">
+    <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
+        <a class="navbar-brand " href="/">
+            
+            <img class="logo" src="https://via.placeholder.com/100x50.png?text=logo" />
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item pl-2 pr-2 ">
+                    <a class="nav-link" href="/">Tiny's Blog</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</div>
 
-      
-      
 
-      
-        <p>python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：</p>
+
+
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        
+        <h1 class="mt-4 article-title page-title">Python collections</h1>
+        
+        <p class="lead text-gray mt-3"> 2016-04-11 @ Tiny  </p>
+        
+        <div class="tags">
+            <ul class="tag-list">
+                
+                <li class="tag-list-item">
+                    <a class="tag-list-link" href="/tags/python/">python</a>
+                </li>
+                
+                <li class="tag-list-item">
+                    <a class="tag-list-link" href="/tags/collections/">collections</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 pt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <main>
+                            <article class="article-text page-content"><p>python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：</p>
 <h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h2><p>dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。</p>
 <ul>
 <li><p>初始化</p>
@@ -316,8 +118,7 @@ Counter({1: 1, 2: 1})
 Counter({&apos;b&apos;: 3, &apos;a&apos;: 2})
 &gt;&gt;&gt; c=Counter(a=2,b=10)
 &gt;&gt;&gt; c
-Counter({&apos;b&apos;: 10, &apos;a&apos;: 2})
-</code></pre></li>
+Counter({&apos;b&apos;: 10, &apos;a&apos;: 2})</code></pre></li>
 <li><p>操作</p>
 <p>  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。</p>
 <pre><code>&gt;&gt;&gt; c[&apos;b&apos;]=20
@@ -326,40 +127,38 @@ Counter({&apos;b&apos;: 20, &apos;a&apos;: 2})
 &gt;&gt;&gt; c.elements()
 &lt;itertools.chain object at 0x11027f290&gt;
 &gt;&gt;&gt; list(c.elements())
-[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;]
-</code></pre></li>
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;]</code></pre></li>
 <li><p>方法</p>
 <ul>
 <li><p>elements <code>无序</code>返回所有元素，如果你想生成一个特定的list，这个方法很方便。</p>
 <pre><code>&gt;&gt;&gt; c=Counter(a=2,b=3,d=1)
 &gt;&gt;&gt; list(c.elements())
-[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;d&apos;]
-</code></pre></li>
+[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;d&apos;]</code></pre></li>
 <li><p>most_common 按计数返回top n</p>
 <pre><code>&gt;&gt;&gt; c.most_common(1)
-[(&apos;b&apos;, 3)]
-</code></pre></li>
+[(&apos;b&apos;, 3)]</code></pre></li>
 <li><p>subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。</p>
 <pre><code>&gt;&gt;&gt; d=Counter(a=1,b=1,d=1,e=2)
 &gt;&gt;&gt; c.subtract(d)
 &gt;&gt;&gt; c
-Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
-</code></pre></li>
+Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})</code></pre></li>
 <li><p>update 同dict，不过Counter update的是计数值。</p>
 <pre><code>&gt;&gt;&gt; c
 Counter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})
 &gt;&gt;&gt; c.update([&apos;a&apos;,&apos;d&apos;])
 &gt;&gt;&gt; c
-Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
-</code></pre><p>*其他 dict类包含的属性            </p>
+Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})</code></pre><p>*其他 dict类包含的属性            </p>
 </li>
 </ul>
 </li>
 <li><p>运算            </p>
 <ol>
-<li>加 对应key的计数相加，保留正数</li>
-<li>减 对应key的计数相加，保留正数</li>
-<li>交集 对应key的计数最小值，保留正数</li>
+<li><p>加 对应key的计数相加，保留正数</p>
+</li>
+<li><p>减 对应key的计数相加，保留正数</p>
+</li>
+<li><p>交集 对应key的计数最小值，保留正数</p>
+</li>
 <li><p>并集 对应key的计数最大值，保留正数 </p>
 <pre><code>&gt;&gt;&gt; c
 Counter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})
@@ -374,8 +173,7 @@ Counter({&apos;e&apos;: 4, &apos;d&apos;: 1})
 &gt;&gt;&gt; c&amp;d
 Counter({&apos;a&apos;: 1, &apos;b&apos;: 1})
 &gt;&gt;&gt; c|d
-Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})
-</code></pre></li>
+Counter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})</code></pre></li>
 </ol>
 </li>
 </ul>
@@ -405,18 +203,18 @@ deque([&apos;a&apos;, &apos;a&apos;, 3, 2, 1])
 1
 &gt;&gt;&gt; d.popleft()
 &apos;a&apos;
-&gt;&gt;&gt;
-</code></pre><h2 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h2><p>又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。</p>
+&gt;&gt;&gt;</code></pre><h2 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h2><p>又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。</p>
 <pre><code>&gt;&gt;&gt; from collections import defaultdict
 &gt;&gt;&gt; d = defaultdict(list)
 &gt;&gt;&gt; d[&apos;newkey&apos;].append(&apos;list&apos;)
 &gt;&gt;&gt; d
-defaultdict(&lt;type &apos;list&apos;&gt;, {&apos;newkey&apos;: [&apos;list&apos;]})
-</code></pre><p>如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。</p>
+defaultdict(&lt;type &apos;list&apos;&gt;, {&apos;newkey&apos;: [&apos;list&apos;]})</code></pre><p>如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。</p>
 <h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h2><p>只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：</p>
 <ul>
-<li>属性访问</li>
-<li>自解释</li>
+<li><p>属性访问</p>
+</li>
+<li><p>自解释</p>
+</li>
 <li><p>快速转换</p>
 <pre><code>&gt;&gt;&gt; from collections import namedtuple
 &gt;&gt;&gt; Servers = namedtuple(&apos;servers&apos;, [&apos;ip&apos;,&apos;port&apos;])
@@ -430,8 +228,7 @@ OrderedDict([(&apos;ip&apos;, &apos;1.1.1.1&apos;), (&apos;port&apos;, 22)])
 &gt;&gt;&gt; s._replace(port=23)
 servers(ip=&apos;1.1.1.1&apos;, port=23)
 &gt;&gt;&gt; s._fields
-(&apos;ip&apos;, &apos;port&apos;)
-</code></pre></li>
+(&apos;ip&apos;, &apos;port&apos;)</code></pre></li>
 </ul>
 <p>namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。</p>
 <p>实例的初始化可以用_make函数，也可以直接<code>**dict</code>来完成。</p>
@@ -451,464 +248,216 @@ OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2)])
 OrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2), (&apos;4&apos;, 3), (&apos;7&apos;, 4)])    
 &gt;&gt;&gt; e = OrderedDict(a)
 &gt;&gt;&gt; e
-OrderedDict([(&apos;4&apos;, 3), (&apos;7&apos;, 4)])
-</code></pre><p>和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。</p>
+OrderedDict([(&apos;4&apos;, 3), (&apos;7&apos;, 4)])</code></pre><p>和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Multiset" target="_blank" rel="external">多元组Multiset</a></li>
-<li><a href="https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type" target="_blank" rel="external">python data types</a></li>
-<li><a href="https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections" target="_blank" rel="external">python collections</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multiset" target="_blank" rel="noopener">多元组Multiset</a></li>
+<li><a href="https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type" target="_blank" rel="noopener">python data types</a></li>
+<li><a href="https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections" target="_blank" rel="noopener">python collections</a></li>
 </ul>
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/collections/" rel="tag">#collections</a>
-          
-            <a href="/tags/python/" rel="tag">#python</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/" rel="next" title="The physical structure of records in InnoDB">
-                <i class="fa fa-chevron-left"></i> The physical structure of records in InnoDB
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/14/Python-One-line/" rel="prev" title="Python One line">
-                Python One line <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/04/11/Python-collections/"
-           data-title="Python collections" data-url="www.www.com/2016/04/11/Python-collections/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/self.jpg"
-               alt="Xchliu" />
-          <p class="site-author-name" itemprop="name">Xchliu</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
-          
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
+</article>
+                        </main>
+                        
+                        
+                    </div>
+                </div>
+                <div class="row mt-5 mb-5">
+                    <div class="col-12">
+                        <div class="row">
+    <div class="col">
+        <nav aria-label="paginator" class="paginator">
+            <ul class="pagination d-none d-md-flex pagination-lg justify-content-center">
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/04/14/Python-One-line/"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;
+                            Python One line</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/"
+                        aria-label="Next">
+                        <span
+                            aria-hidden="true">The physical structure of records in InnoDB
+                            &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pagination d-md-none justify-content-center">
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/04/14/Python-One-line/"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&laquo;
+                            Python One line</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link"
+                        href="/2016/04/05/The-physical-structure-of-records-in-InnoDB/"
+                        aria-label="Next">
+                        <span
+                            aria-hidden="true">The physical structure of records in InnoDB
+                            &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/xchliu" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Counter"><span class="nav-number">1.</span> <span class="nav-text">Counter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deque"><span class="nav-number">2.</span> <span class="nav-text">deque</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#defaultdict"><span class="nav-number">3.</span> <span class="nav-text">defaultdict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#namedtuple"><span class="nav-number">4.</span> <span class="nav-text">namedtuple</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OrderedDict"><span class="nav-number">4.1.</span> <span class="nav-text">OrderedDict</span></a></li></ol></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
     </div>
-  </aside>
+</div>
 
 
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="vcomment"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="container pt-4 page-sidebar">
+                    
+                    <hr class="row">
+                    <div class="row toc-container">
+                        <div class="col-12">
+                            <h6>NAVIGATION</h6>
+                            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Counter"><span class="toc-text">Counter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deque"><span class="toc-text">deque</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#defaultdict"><span class="toc-text">defaultdict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#namedtuple"><span class="toc-text">namedtuple</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OrderedDict"><span class="toc-text">OrderedDict</span></a></li></ol></li></ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div class="jumbotron jumbotron-fluid mb-0">
+        <div class="container-fluid">
+            <div class="col text-center">
+                <div class="bottom-social">
+                    <div class="row">
+    <div class="col text-center">
+        <ul class="list-inline">
+            
+            <li class="list-inline-item">
+                
+                <a href="https://github.com/xchliu">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.facebook.com/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.pinterest.com/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-pinterest-p fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+            <li class="list-inline-item">
+                
+                <a href="https://www.linkedin.com/in/xxxxx">
+                    <span class="fa-stack fa-2x icon-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+                </div>
+                <p class="copyright text-muted">
+                    Copyright &copy; 
+                    <br>
+                    Thanks for coming!
+                    <br>
+                    <a href="https://github.com/Hanlin-Dong/hexo-theme-adagio">Adagio</a> - A <a href="https://hexo.io">Hexo</a> theme made with love by
+                    <a href="http://www.hanlindong.com">Hanlin Dong</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+    
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.bootcss.com/font-awesome/5.9.0/js/all.min.js"></script>
+         
+            <script type="text/x-mathjax-config">
+                MathJax.Hub.Config({
+                    CommonHTML: { linebreaks: { automatic: true } },
+                    "HTML-CSS": { linebreaks: { automatic: true } },
+                    SVG: { linebreaks: { automatic: true } }
+                });
+            </script>
+            <script src='https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Xchliu</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
+    
 
 
+<script src="/js/av.min.js"></script>
+<script src="/js/valine.min.js"></script>
+<script src="/js/applause-easy.js"></script>
 
-      </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  
-
-
-  
-
-
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
-
-  
-  
-
-  
-  
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
+<script>
+$(document).ready(function() {
+    var a = new ApplauseEasy({
+        id: 'applause-easy',
+        appId: "xxxxxxxxxx",
+        appKey: "xxxxxxxxxx",
+        img_src: "http://img.hanlindong.com/blog/site/clap.png",
+        img_width: "50px",
+        img_height: "50px"
+    })
+})
 </script>
 
 
 
-  
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-
-
-  
-
-  
     
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"xchliu"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
+    <script>
+    new Valine({
+        el: "#vcomment",
+        appId: "xxxxxxxxxx",
+        appKey: "xxxxxxxxxx",
+        notify: false,
+        varify: false,
+        avatar: 'identicon',
+        placeholder: "",
+        recordIP: true
+    })
+</script>
     
-  
-
-
-
-
-
-  
-  
-
-  
-  
-
-
 </body>
 </html>

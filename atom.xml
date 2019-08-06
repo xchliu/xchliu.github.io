@@ -2,10 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title></title>
   
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="www.www.com/"/>
-  <updated>2016-04-14T11:03:21.000Z</updated>
+  <updated>2016-04-19T10:27:59.000Z</updated>
   <id>www.www.com/</id>
   
   <author>
@@ -16,15 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>资料收集</title>
+    <link href="www.www.com/2016/04/19/%E8%B5%84%E6%96%99%E6%94%B6%E9%9B%86/"/>
+    <id>www.www.com/2016/04/19/资料收集/</id>
+    <published>2016-04-19T10:27:00.000Z</published>
+    <updated>2016-04-19T10:27:59.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Python One line</title>
     <link href="www.www.com/2016/04/14/Python-One-line/"/>
     <id>www.www.com/2016/04/14/Python-One-line/</id>
     <published>2016-04-14T11:03:21.000Z</published>
-    <updated>2016-04-14T11:03:21.000Z</updated>
+    <updated>2016-05-03T08:24:57.000Z</updated>
     
-    <content type="html"></content>
+    <content type="html"><![CDATA[<p>很多时候，我们更愿意将代码写成一行，显得更简洁。Python一行代码可以干很多事，有的是为了方便实用，也有的仅仅是为了能在一行代码搞定一堆事情。实现的方式一般是使用lamdba，推导式或者调用一些包。</p><ul><li><p>三元条件表达式<br>  a=1 if 1=2 else 0<br>一行搞定条件判断，变量赋值。</p></li><li><p>推导式</p><pre><code>&gt;&gt;&gt; [ x for x in range(5)][0, 1, 2, 3, 4]&gt;&gt;&gt; [ x for x in range(10) if x%2][1, 3, 5, 7, 9]</code></pre></li><li><p>Httpserver</p></li></ul><p>文件共享利器</p><pre><code>python -m SimpleHTTPServer 8000</code></pre><p>列表碾平：</p><pre><code>flatten = lambda x: [y for l in x for y in flatten(l)] if type(x) is list else [x]</code></pre><p><a href="http://python-oneliner.readthedocs.org/en/latest/" target="_blank" rel="noopener">Python Oneliner</a></p><p><a href="https://wiki.python.org/moin/Powerful%20Python%20One-Liners" target="_blank" rel="noopener">Powerful Python One-Liners</a></p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;很多时候，我们更愿意将代码写成一行，显得更简洁。Python一行代码可以干很多事，有的是为了方便实用，也有的仅仅是为了能在一行代码搞定一堆事情。实现的方式一般是使用lamdba，推导式或者调用一些包。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;三元条件表达式&lt;br&gt;  a=1 if 
+      
     
     </summary>
     
@@ -38,179 +60,24 @@
     <published>2016-04-11T10:13:00.000Z</published>
     <updated>2016-04-18T10:41:29.000Z</updated>
     
-    <content type="html">&lt;p&gt;python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：&lt;/p&gt;
-&lt;h2 id=&quot;Counter&quot;&gt;&lt;a href=&quot;#Counter&quot; class=&quot;headerlink&quot; title=&quot;Counter&quot;&gt;&lt;/a&gt;Counter&lt;/h2&gt;&lt;p&gt;dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;初始化&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import Counter
-&amp;gt;&amp;gt;&amp;gt; c=Counter()
-# list
-&amp;gt;&amp;gt;&amp;gt; c=Counter([1,2])
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({1: 1, 2: 1})
-# 直接初始化计数
-&amp;gt;&amp;gt;&amp;gt; c=Counter({&amp;apos;a&amp;apos;:2,&amp;apos;b&amp;apos;:3})
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;b&amp;apos;: 3, &amp;apos;a&amp;apos;: 2})
-&amp;gt;&amp;gt;&amp;gt; c=Counter(a=2,b=10)
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;b&amp;apos;: 10, &amp;apos;a&amp;apos;: 2})
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;操作&lt;/p&gt;
-&lt;p&gt;  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c[&amp;apos;b&amp;apos;]=20
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;b&amp;apos;: 20, &amp;apos;a&amp;apos;: 2})
-&amp;gt;&amp;gt;&amp;gt; c.elements()
-&amp;lt;itertools.chain object at 0x11027f290&amp;gt;
-&amp;gt;&amp;gt;&amp;gt; list(c.elements())
-[&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;方法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;elements &lt;code&gt;无序&lt;/code&gt;返回所有元素，如果你想生成一个特定的list，这个方法很方便。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c=Counter(a=2,b=3,d=1)
-&amp;gt;&amp;gt;&amp;gt; list(c.elements())
-[&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;b&amp;apos;, &amp;apos;d&amp;apos;]
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;most_common 按计数返回top n&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c.most_common(1)
-[(&amp;apos;b&amp;apos;, 3)]
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; d=Counter(a=1,b=1,d=1,e=2)
-&amp;gt;&amp;gt;&amp;gt; c.subtract(d)
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;b&amp;apos;: 1, &amp;apos;a&amp;apos;: 0, &amp;apos;d&amp;apos;: -1, &amp;apos;e&amp;apos;: -2})
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;update 同dict，不过Counter update的是计数值。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;b&amp;apos;: 1, &amp;apos;a&amp;apos;: 0, &amp;apos;d&amp;apos;: -1, &amp;apos;e&amp;apos;: -2})
-&amp;gt;&amp;gt;&amp;gt; c.update([&amp;apos;a&amp;apos;,&amp;apos;d&amp;apos;])
-&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 0, &amp;apos;e&amp;apos;: -2})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;*其他 dict类包含的属性            &lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;运算            &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;加 对应key的计数相加，保留正数&lt;/li&gt;
-&lt;li&gt;减 对应key的计数相加，保留正数&lt;/li&gt;
-&lt;li&gt;交集 对应key的计数最小值，保留正数&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;并集 对应key的计数最大值，保留正数 &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; c
-Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 0, &amp;apos;e&amp;apos;: -2})
-&amp;gt;&amp;gt;&amp;gt; d
-Counter({&amp;apos;e&amp;apos;: 2, &amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 1})
-  &amp;gt;&amp;gt;&amp;gt; c+d
-Counter({&amp;apos;a&amp;apos;: 2, &amp;apos;b&amp;apos;: 2, &amp;apos;d&amp;apos;: 1})
-&amp;gt;&amp;gt;&amp;gt; c-d
-Counter()
-&amp;gt;&amp;gt;&amp;gt; d-c
-Counter({&amp;apos;e&amp;apos;: 4, &amp;apos;d&amp;apos;: 1})
-&amp;gt;&amp;gt;&amp;gt; c&amp;amp;d
-Counter({&amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1})
-&amp;gt;&amp;gt;&amp;gt; c|d
-Counter({&amp;apos;e&amp;apos;: 2, &amp;apos;a&amp;apos;: 1, &amp;apos;b&amp;apos;: 1, &amp;apos;d&amp;apos;: 1})
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;deque&quot;&gt;&lt;a href=&quot;#deque&quot; class=&quot;headerlink&quot; title=&quot;deque&quot;&gt;&lt;/a&gt;deque&lt;/h2&gt;&lt;p&gt;对于常用的list类型，对列表中的元素进行插入，删除，以及添加，会涉及到列表的元素移动或者列表大小的变化。并且list只能从队列末端进行append和pop。&lt;/p&gt;
-&lt;p&gt;双端队列deque 提供线程安全，内存性能，可从队列两端进行元素插入和删除的高速队列。首尾的快速操作可以做为动态的消息队列。&lt;/p&gt;
-&lt;p&gt;deque的方法和list类似，多了对端的操作函数，比如append，appendleft。&lt;br&gt;其中maxlen属性用来控制队列最大长度，如果对一个满队列进行插入，则会通过推出对端相应数量的元素来完成。&lt;/p&gt;
-&lt;p&gt;常用操作：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import deque
-&amp;gt;&amp;gt;&amp;gt; d=deque([1,2,3])
-&amp;gt;&amp;gt;&amp;gt; d
-deque([1, 2, 3])
-&amp;gt;&amp;gt;&amp;gt; d.append(&amp;apos;a&amp;apos;)
-&amp;gt;&amp;gt;&amp;gt; d
-deque([1, 2, 3, &amp;apos;a&amp;apos;])
-&amp;gt;&amp;gt;&amp;gt; d.appendleft(&amp;apos;a&amp;apos;)
-&amp;gt;&amp;gt;&amp;gt; d
-deque([&amp;apos;a&amp;apos;, 1, 2, 3, &amp;apos;a&amp;apos;])
-&amp;gt;&amp;gt;&amp;gt; d[2]
-2
-&amp;gt;&amp;gt;&amp;gt; d.reverse()
-&amp;gt;&amp;gt;&amp;gt; d
-deque([&amp;apos;a&amp;apos;, 3, 2, 1, &amp;apos;a&amp;apos;])
-&amp;gt;&amp;gt;&amp;gt; d.rotate(1)
-&amp;gt;&amp;gt;&amp;gt; d
-deque([&amp;apos;a&amp;apos;, &amp;apos;a&amp;apos;, 3, 2, 1])
-&amp;gt;&amp;gt;&amp;gt; d.pop()
-1
-&amp;gt;&amp;gt;&amp;gt; d.popleft()
-&amp;apos;a&amp;apos;
-&amp;gt;&amp;gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;defaultdict&quot;&gt;&lt;a href=&quot;#defaultdict&quot; class=&quot;headerlink&quot; title=&quot;defaultdict&quot;&gt;&lt;/a&gt;defaultdict&lt;/h2&gt;&lt;p&gt;又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import defaultdict
-&amp;gt;&amp;gt;&amp;gt; d = defaultdict(list)
-&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;newkey&amp;apos;].append(&amp;apos;list&amp;apos;)
-&amp;gt;&amp;gt;&amp;gt; d
-defaultdict(&amp;lt;type &amp;apos;list&amp;apos;&amp;gt;, {&amp;apos;newkey&amp;apos;: [&amp;apos;list&amp;apos;]})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。&lt;/p&gt;
-&lt;h2 id=&quot;namedtuple&quot;&gt;&lt;a href=&quot;#namedtuple&quot; class=&quot;headerlink&quot; title=&quot;namedtuple&quot;&gt;&lt;/a&gt;namedtuple&lt;/h2&gt;&lt;p&gt;只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;属性访问&lt;/li&gt;
-&lt;li&gt;自解释&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;快速转换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import namedtuple
-&amp;gt;&amp;gt;&amp;gt; Servers = namedtuple(&amp;apos;servers&amp;apos;, [&amp;apos;ip&amp;apos;,&amp;apos;port&amp;apos;])
-&amp;gt;&amp;gt;&amp;gt; s = Servers(&amp;apos;1.1.1.1&amp;apos;, 22)
-&amp;gt;&amp;gt;&amp;gt; s
-servers(ip=&amp;apos;1.1.1.1&amp;apos;, port=22)
-&amp;gt;&amp;gt;&amp;gt; s.ip
-&amp;apos;1.1.1.1&amp;apos;
-&amp;gt;&amp;gt;&amp;gt; s._asdict()
-OrderedDict([(&amp;apos;ip&amp;apos;, &amp;apos;1.1.1.1&amp;apos;), (&amp;apos;port&amp;apos;, 22)])
-&amp;gt;&amp;gt;&amp;gt; s._replace(port=23)
-servers(ip=&amp;apos;1.1.1.1&amp;apos;, port=23)
-&amp;gt;&amp;gt;&amp;gt; s._fields
-(&amp;apos;ip&amp;apos;, &amp;apos;port&amp;apos;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。&lt;/p&gt;
-&lt;p&gt;实例的初始化可以用_make函数，也可以直接&lt;code&gt;**dict&lt;/code&gt;来完成。&lt;/p&gt;
-&lt;h3 id=&quot;OrderedDict&quot;&gt;&lt;a href=&quot;#OrderedDict&quot; class=&quot;headerlink&quot; title=&quot;OrderedDict&quot;&gt;&lt;/a&gt;OrderedDict&lt;/h3&gt;&lt;p&gt;dict的子类，有序字典，顺序取决于元素的插入顺序，需要注意的是如果改变已插入的元素，该元素会的顺序将移到最后。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; from collections import OrderedDict
-&amp;gt;&amp;gt;&amp;gt; d = OrderedDict()
-&amp;gt;&amp;gt;&amp;gt; d
-OrderedDict()
-&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;2&amp;apos;] =1
-&amp;gt;&amp;gt;&amp;gt; d[&amp;apos;1&amp;apos;] =2
-&amp;gt;&amp;gt;&amp;gt; d
-OrderedDict([(&amp;apos;2&amp;apos;, 1), (&amp;apos;1&amp;apos;, 2)])
-&amp;gt;&amp;gt;&amp;gt;
-&amp;gt;&amp;gt;&amp;gt; a ={&amp;apos;7&amp;apos;:4,&amp;apos;4&amp;apos;:3}
-&amp;gt;&amp;gt;&amp;gt; d.update(a)
-&amp;gt;&amp;gt;&amp;gt; d
-OrderedDict([(&amp;apos;2&amp;apos;, 1), (&amp;apos;1&amp;apos;, 2), (&amp;apos;4&amp;apos;, 3), (&amp;apos;7&amp;apos;, 4)])    
-&amp;gt;&amp;gt;&amp;gt; e = OrderedDict(a)
-&amp;gt;&amp;gt;&amp;gt; e
-OrderedDict([(&amp;apos;4&amp;apos;, 3), (&amp;apos;7&amp;apos;, 4)])
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Multiset&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多元组Multiset&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python data types&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;python collections&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
+    <content type="html"><![CDATA[<p>python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：</p><h2 id="Counter"><a href="#Counter" class="headerlink" title="Counter"></a>Counter</h2><p>dict的子类，用于对迭代对象的计数，同时也具备dict类型大多数方法，而且可以方便地转换成常用的数据类型,比如在搜索结果做类别计数的时候。</p><ul><li><p>初始化</p><pre><code>&gt;&gt;&gt; from collections import Counter&gt;&gt;&gt; c=Counter()# list&gt;&gt;&gt; c=Counter([1,2])&gt;&gt;&gt; cCounter({1: 1, 2: 1})# 直接初始化计数&gt;&gt;&gt; c=Counter({&apos;a&apos;:2,&apos;b&apos;:3})&gt;&gt;&gt; cCounter({&apos;b&apos;: 3, &apos;a&apos;: 2})&gt;&gt;&gt; c=Counter(a=2,b=10)&gt;&gt;&gt; cCounter({&apos;b&apos;: 10, &apos;a&apos;: 2})</code></pre></li><li><p>操作</p><p>  和dict一样，通过key访问Counter对象的值，也可以修改/删除其计数值。</p><pre><code>&gt;&gt;&gt; c[&apos;b&apos;]=20&gt;&gt;&gt; cCounter({&apos;b&apos;: 20, &apos;a&apos;: 2})&gt;&gt;&gt; c.elements()&lt;itertools.chain object at 0x11027f290&gt;&gt;&gt;&gt; list(c.elements())[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;]</code></pre></li><li><p>方法</p><ul><li><p>elements <code>无序</code>返回所有元素，如果你想生成一个特定的list，这个方法很方便。</p><pre><code>&gt;&gt;&gt; c=Counter(a=2,b=3,d=1)&gt;&gt;&gt; list(c.elements())[&apos;a&apos;, &apos;a&apos;, &apos;b&apos;, &apos;b&apos;, &apos;b&apos;, &apos;d&apos;]</code></pre></li><li><p>most_common 按计数返回top n</p><pre><code>&gt;&gt;&gt; c.most_common(1)[(&apos;b&apos;, 3)]</code></pre></li><li><p>subtract 计数减法,也就是对应key的值减法，结果可以为负，可以key值不对称。</p><pre><code>&gt;&gt;&gt; d=Counter(a=1,b=1,d=1,e=2)&gt;&gt;&gt; c.subtract(d)&gt;&gt;&gt; cCounter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})</code></pre></li><li><p>update 同dict，不过Counter update的是计数值。</p><pre><code>&gt;&gt;&gt; cCounter({&apos;b&apos;: 1, &apos;a&apos;: 0, &apos;d&apos;: -1, &apos;e&apos;: -2})&gt;&gt;&gt; c.update([&apos;a&apos;,&apos;d&apos;])&gt;&gt;&gt; cCounter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})</code></pre><p>*其他 dict类包含的属性            </p></li></ul></li><li><p>运算            </p><ol><li><p>加 对应key的计数相加，保留正数</p></li><li><p>减 对应key的计数相加，保留正数</p></li><li><p>交集 对应key的计数最小值，保留正数</p></li><li><p>并集 对应key的计数最大值，保留正数 </p><pre><code>&gt;&gt;&gt; cCounter({&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 0, &apos;e&apos;: -2})&gt;&gt;&gt; dCounter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})  &gt;&gt;&gt; c+dCounter({&apos;a&apos;: 2, &apos;b&apos;: 2, &apos;d&apos;: 1})&gt;&gt;&gt; c-dCounter()&gt;&gt;&gt; d-cCounter({&apos;e&apos;: 4, &apos;d&apos;: 1})&gt;&gt;&gt; c&amp;dCounter({&apos;a&apos;: 1, &apos;b&apos;: 1})&gt;&gt;&gt; c|dCounter({&apos;e&apos;: 2, &apos;a&apos;: 1, &apos;b&apos;: 1, &apos;d&apos;: 1})</code></pre></li></ol></li></ul><h2 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h2><p>对于常用的list类型，对列表中的元素进行插入，删除，以及添加，会涉及到列表的元素移动或者列表大小的变化。并且list只能从队列末端进行append和pop。</p><p>双端队列deque 提供线程安全，内存性能，可从队列两端进行元素插入和删除的高速队列。首尾的快速操作可以做为动态的消息队列。</p><p>deque的方法和list类似，多了对端的操作函数，比如append，appendleft。<br>其中maxlen属性用来控制队列最大长度，如果对一个满队列进行插入，则会通过推出对端相应数量的元素来完成。</p><p>常用操作：</p><pre><code>&gt;&gt;&gt; from collections import deque&gt;&gt;&gt; d=deque([1,2,3])&gt;&gt;&gt; ddeque([1, 2, 3])&gt;&gt;&gt; d.append(&apos;a&apos;)&gt;&gt;&gt; ddeque([1, 2, 3, &apos;a&apos;])&gt;&gt;&gt; d.appendleft(&apos;a&apos;)&gt;&gt;&gt; ddeque([&apos;a&apos;, 1, 2, 3, &apos;a&apos;])&gt;&gt;&gt; d[2]2&gt;&gt;&gt; d.reverse()&gt;&gt;&gt; ddeque([&apos;a&apos;, 3, 2, 1, &apos;a&apos;])&gt;&gt;&gt; d.rotate(1)&gt;&gt;&gt; ddeque([&apos;a&apos;, &apos;a&apos;, 3, 2, 1])&gt;&gt;&gt; d.pop()1&gt;&gt;&gt; d.popleft()&apos;a&apos;&gt;&gt;&gt;</code></pre><h2 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h2><p>又一个dict的子类，如果你想对字典的values()有一个初始值或者是类型，defaultdict就派上用场了。</p><pre><code>&gt;&gt;&gt; from collections import defaultdict&gt;&gt;&gt; d = defaultdict(list)&gt;&gt;&gt; d[&apos;newkey&apos;].append(&apos;list&apos;)&gt;&gt;&gt; ddefaultdict(&lt;type &apos;list&apos;&gt;, {&apos;newkey&apos;: [&apos;list&apos;]})</code></pre><p>如果访问defaultdict的key不存在，初始化指定的函数或者类就会被调用，比如上面的就会调用list()，并将返回值作为该key的初始值，于是就可以直接对元素调用list的方法。初始化的方法可以是int，list，set ..等类型，也可以是自定义的函数。</p><h2 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h2><p>只能使用下标访问的tuple总是各种麻烦，而且必须加上注释才知道tuple的元素的含义。namedtuple就是为解决这个问题：</p><ul><li><p>属性访问</p></li><li><p>自解释</p></li><li><p>快速转换</p><pre><code>&gt;&gt;&gt; from collections import namedtuple&gt;&gt;&gt; Servers = namedtuple(&apos;servers&apos;, [&apos;ip&apos;,&apos;port&apos;])&gt;&gt;&gt; s = Servers(&apos;1.1.1.1&apos;, 22)&gt;&gt;&gt; sservers(ip=&apos;1.1.1.1&apos;, port=22)&gt;&gt;&gt; s.ip&apos;1.1.1.1&apos;&gt;&gt;&gt; s._asdict()OrderedDict([(&apos;ip&apos;, &apos;1.1.1.1&apos;), (&apos;port&apos;, 22)])&gt;&gt;&gt; s._replace(port=23)servers(ip=&apos;1.1.1.1&apos;, port=23)&gt;&gt;&gt; s._fields(&apos;ip&apos;, &apos;port&apos;)</code></pre></li></ul><p>namedtuple的函数都是下划线命名，为的避免和键值冲突，也就要去namedtuple的键值不能是下划线开头。</p><p>实例的初始化可以用_make函数，也可以直接<code>**dict</code>来完成。</p><h3 id="OrderedDict"><a href="#OrderedDict" class="headerlink" title="OrderedDict"></a>OrderedDict</h3><p>dict的子类，有序字典，顺序取决于元素的插入顺序，需要注意的是如果改变已插入的元素，该元素会的顺序将移到最后。</p><pre><code>&gt;&gt;&gt; from collections import OrderedDict&gt;&gt;&gt; d = OrderedDict()&gt;&gt;&gt; dOrderedDict()&gt;&gt;&gt; d[&apos;2&apos;] =1&gt;&gt;&gt; d[&apos;1&apos;] =2&gt;&gt;&gt; dOrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2)])&gt;&gt;&gt;&gt;&gt;&gt; a ={&apos;7&apos;:4,&apos;4&apos;:3}&gt;&gt;&gt; d.update(a)&gt;&gt;&gt; dOrderedDict([(&apos;2&apos;, 1), (&apos;1&apos;, 2), (&apos;4&apos;, 3), (&apos;7&apos;, 4)])    &gt;&gt;&gt; e = OrderedDict(a)&gt;&gt;&gt; eOrderedDict([(&apos;4&apos;, 3), (&apos;7&apos;, 4)])</code></pre><p>和update一样，如果初始的时候指定字典，得到的有序字典顺序不一定和指定的字典一样，因为python中字典是无序的。</p><ul><li><a href="https://en.wikipedia.org/wiki/Multiset" target="_blank" rel="noopener">多元组Multiset</a></li><li><a href="https://docs.python.org/2.7/library/datatypes.html?highlight=data%20type" target="_blank" rel="noopener">python data types</a></li><li><a href="https://docs.python.org/2.7/library/collections.html?highlight=collections#module-collections" target="_blank" rel="noopener">python collections</a></li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：&lt;/p&gt;
+      
+      
+        &lt;p&gt;python中常用的数据类型：dict，set，list，tuple。在一些场景下总是会遇到使用的类型不能满足的情况，事实上，python还提供一些特定功能的数据类型：&lt;/p&gt;
 &lt;h2 id=&quot;Counter&quot;&gt;&lt;a href=&quot;#Counter&quot; class=&quot;heade
+      
     
     </summary>
     
       <category term="python" scheme="www.www.com/categories/python/"/>
     
     
-      <category term="collections" scheme="www.www.com/tags/collections/"/>
-    
       <category term="python" scheme="www.www.com/tags/python/"/>
+    
+      <category term="collections" scheme="www.www.com/tags/collections/"/>
     
   </entry>
   
@@ -221,54 +88,14 @@ OrderedDict([(&amp;apos;4&amp;apos;, 3), (&amp;apos;7&amp;apos;, 4)])
     <published>2016-04-05T09:26:00.000Z</published>
     <updated>2016-04-11T11:19:07.000Z</updated>
     
-    <content type="html">&lt;p&gt;原文地址:&lt;br&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physical structure of records in InnoDB&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Record-offsets&quot;&gt;&lt;a href=&quot;#Record-offsets&quot; class=&quot;headerlink&quot; title=&quot;Record offsets&quot;&gt;&lt;/a&gt;Record offsets&lt;/h3&gt;&lt;p&gt;记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。&lt;/p&gt;
-&lt;h3 id=&quot;The-record-header&quot;&gt;&lt;a href=&quot;#The-record-header&quot; class=&quot;headerlink&quot; title=&quot;The record header&quot;&gt;&lt;/a&gt;The record header&lt;/h3&gt;&lt;p&gt;处于数据记录前的记录头结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Header.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Next Record Offset: 当前页中，指向索引升序顺序中下一个数据记录的相对偏移量&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Record Type:记录类型，当前只支持4中类型：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;conventional（0）
-node pointer（1）
-infimum（2）
-supremum（3）
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Order: 记录插入的顺序值。堆记录从0开始计数，Infimum 总是0， supremum总是1， 用户数据从2开始编号。&lt;/li&gt;
-&lt;li&gt;Numver of Records Owned：在数据页目录本记录占用的记录数&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Info Flags: 存储记录布尔标志的4位位图。当前只定义了2个标志：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;min_rec(1) 记录为B+tree中非叶节点中的最小值
-deleted(2) 删除标记
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;Nullable field  bitmap：对每一个可为null的列用一位进行标示是否null,如果某列为null，其列数据将被忽略；如果没有可为null的列，这个标志位将取消。&lt;/li&gt;
-&lt;li&gt;Variable field lengths array: 由8位或16位整数（根据列的最大值定）组成的数组，记录数据列的长度。如果没有可变长列，此标志位取消。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;记录头占每行数据最小到5个字节，如果变长类很多，记录头的长度会大很多。&lt;/p&gt;
-&lt;h3 id=&quot;Clustered-indexes&quot;&gt;&lt;a href=&quot;#Clustered-indexes&quot; class=&quot;headerlink&quot; title=&quot;Clustered indexes&quot;&gt;&lt;/a&gt;Clustered indexes&lt;/h3&gt;&lt;p&gt;聚集索引记录结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Clustered_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Cluster Key Fields：聚集索引列，串联在一起。InnoDB 使用内部存储引擎对没列的类型原始字节格式化成一个字节流&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Transaction ID：48位，上一次更改记录数据的事务ID&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Roll Pointer：包含记录了上一次更改记录数据的事务在回滚记录段中的位置信息的结构体。Roll Pointer 结构体包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;1位的‘is insert’标识 &lt;/li&gt;
-&lt;li&gt;7位的回滚端ID&lt;/li&gt;
-&lt;li&gt;4位回滚页编号&lt;/li&gt;
-&lt;li&gt;2位回滚页偏移量&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;None-Key Fields 所有非主键数据，也就是实际的行数据，链接成一个字节流。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;非页节点记录结构：&lt;br&gt;&lt;img src=&quot;/images/Record_Clustered_Non_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;由于非页节点不是MVCC，事务ID和回滚指针都被取消。存在实际数据的列改为存放子节点的指针。由于聚集索引不能为NULL，null标识位也被取消。&lt;/p&gt;
-&lt;h3 id=&quot;Secondary-indexes&quot;&gt;&lt;a href=&quot;#Secondary-indexes&quot; class=&quot;headerlink&quot; title=&quot;Secondary indexes&quot;&gt;&lt;/a&gt;Secondary indexes&lt;/h3&gt;&lt;p&gt;InnoDB的二级索引和聚集索引的结构一样，只是在聚集索引存放非键值列（叶节点）的空间，二级索引存放的是主键信息（PKV，主键值）。如果二级索引和主键出现重复的列，二级索引中只存放非重复的部分。例如，表的主键为（a,b,c），二级索引为（a,d），则二级索引中存放（a,d），则PKVs中存放（b,c）.&lt;/p&gt;
-&lt;p&gt;由于二级索引的列允许非唯一和可为空，则可变长段和null标识位都可能有值。所以页节点的结构很简单：&lt;br&gt;&lt;img src=&quot;/images/Record_Secondary_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;同聚集索引一样，二级索引中的这些段连接成一个字节流。&lt;/p&gt;
-&lt;p&gt;非叶节点的结构：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/Record_Secondary_Non_Leaf.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;二级索引的非叶节点有一点需要注意：记录中包含了主键值（PKV），并作为键值的一部分。二级索引允许为非唯一和可为空，则每一个记录都需要一个唯一标识，所以使用主键值来确保唯一性。这意味着二级索引中的非叶节点占用空间比他们的页节点大4个字节。&lt;/p&gt;
-&lt;h3 id=&quot;空间开销&quot;&gt;&lt;a href=&quot;#空间开销&quot; class=&quot;headerlink&quot; title=&quot;空间开销&quot;&gt;&lt;/a&gt;空间开销&lt;/h3&gt;&lt;p&gt;从上面的结构图，很容易计算出InnoDB每一行的空间占用。聚集索引叶节点需要最小5字节的记录头，6字节的事务ID，7字节的回滚指针，每行一共18字节。对于比较小的表，比如只有2-3列整数列，空间浪费比例很大。&lt;br&gt;另外，在每一页的空间额外开销比例也很大，主要消耗在需要大量空间的无效页的填充上。&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>原文地址:<br><a href="http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/" target="_blank" rel="noopener">The physical structure of records in InnoDB</a></p><h3 id="Record-offsets"><a href="#Record-offsets" class="headerlink" title="Record offsets"></a>Record offsets</h3><p>记录的变长偏移量指针指向记录的起始位置，每一个记录同时也包含一个变长的记录头。在本文中，记录数据的起始位置为N，之后的数据使用正数偏移量（N+1）,记录头中使用负数偏移量（N-1）来标示。InnoDB 常以N作为数据记录的起始位置。</p><h3 id="The-record-header"><a href="#The-record-header" class="headerlink" title="The record header"></a>The record header</h3><p>处于数据记录前的记录头结构：<br><img src="/images/Record_Header.png" alt></p><ul><li><p>Next Record Offset: 当前页中，指向索引升序顺序中下一个数据记录的相对偏移量</p></li><li><p>Record Type:记录类型，当前只支持4中类型：</p><pre><code>conventional（0）node pointer（1）infimum（2）supremum（3）</code></pre></li><li><p>Order: 记录插入的顺序值。堆记录从0开始计数，Infimum 总是0， supremum总是1， 用户数据从2开始编号。</p></li><li><p>Numver of Records Owned：在数据页目录本记录占用的记录数</p></li><li><p>Info Flags: 存储记录布尔标志的4位位图。当前只定义了2个标志：</p><pre><code>min_rec(1) 记录为B+tree中非叶节点中的最小值deleted(2) 删除标记</code></pre></li><li><p>Nullable field  bitmap：对每一个可为null的列用一位进行标示是否null,如果某列为null，其列数据将被忽略；如果没有可为null的列，这个标志位将取消。</p></li><li><p>Variable field lengths array: 由8位或16位整数（根据列的最大值定）组成的数组，记录数据列的长度。如果没有可变长列，此标志位取消。</p></li></ul><p>记录头占每行数据最小到5个字节，如果变长类很多，记录头的长度会大很多。</p><h3 id="Clustered-indexes"><a href="#Clustered-indexes" class="headerlink" title="Clustered indexes"></a>Clustered indexes</h3><p>聚集索引记录结构：<br><img src="/images/Record_Clustered_Leaf.png" alt></p><ul><li><p>Cluster Key Fields：聚集索引列，串联在一起。InnoDB 使用内部存储引擎对没列的类型原始字节格式化成一个字节流</p></li><li><p>Transaction ID：48位，上一次更改记录数据的事务ID</p></li><li><p>Roll Pointer：包含记录了上一次更改记录数据的事务在回滚记录段中的位置信息的结构体。Roll Pointer 结构体包括：</p><ul><li>1位的‘is insert’标识 </li><li>7位的回滚端ID</li><li>4位回滚页编号</li><li>2位回滚页偏移量</li></ul></li><li><p>None-Key Fields 所有非主键数据，也就是实际的行数据，链接成一个字节流。</p></li></ul><p>非页节点记录结构：<br><img src="/images/Record_Clustered_Non_Leaf.png" alt><br>由于非页节点不是MVCC，事务ID和回滚指针都被取消。存在实际数据的列改为存放子节点的指针。由于聚集索引不能为NULL，null标识位也被取消。</p><h3 id="Secondary-indexes"><a href="#Secondary-indexes" class="headerlink" title="Secondary indexes"></a>Secondary indexes</h3><p>InnoDB的二级索引和聚集索引的结构一样，只是在聚集索引存放非键值列（叶节点）的空间，二级索引存放的是主键信息（PKV，主键值）。如果二级索引和主键出现重复的列，二级索引中只存放非重复的部分。例如，表的主键为（a,b,c），二级索引为（a,d），则二级索引中存放（a,d），则PKVs中存放（b,c）.</p><p>由于二级索引的列允许非唯一和可为空，则可变长段和null标识位都可能有值。所以页节点的结构很简单：<br><img src="/images/Record_Secondary_Leaf.png" alt><br>同聚集索引一样，二级索引中的这些段连接成一个字节流。</p><p>非叶节点的结构：</p><p><img src="/images/Record_Secondary_Non_Leaf.png" alt><br>二级索引的非叶节点有一点需要注意：记录中包含了主键值（PKV），并作为键值的一部分。二级索引允许为非唯一和可为空，则每一个记录都需要一个唯一标识，所以使用主键值来确保唯一性。这意味着二级索引中的非叶节点占用空间比他们的页节点大4个字节。</p><h3 id="空间开销"><a href="#空间开销" class="headerlink" title="空间开销"></a>空间开销</h3><p>从上面的结构图，很容易计算出InnoDB每一行的空间占用。聚集索引叶节点需要最小5字节的记录头，6字节的事务ID，7字节的回滚指针，每行一共18字节。对于比较小的表，比如只有2-3列整数列，空间浪费比例很大。<br>另外，在每一页的空间额外开销比例也很大，主要消耗在需要大量空间的无效页的填充上。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;原文地址:&lt;br&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physic
+      
+      
+        &lt;p&gt;原文地址:&lt;br&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/10/the-physical-structure-of-records-in-innodb/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The physic
+      
     
     </summary>
     
@@ -294,70 +121,15 @@ deleted(2) 删除标记
     <published>2016-03-31T09:48:00.000Z</published>
     <updated>2016-04-01T06:42:58.000Z</updated>
     
-    <content type="html">&lt;p&gt;原文地址:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The physical structure of InnoDB index pages &lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;InnoDB：一切皆索引&quot;&gt;&lt;a href=&quot;#InnoDB：一切皆索引&quot; class=&quot;headerlink&quot; title=&quot;InnoDB：一切皆索引&quot;&gt;&lt;/a&gt;InnoDB：一切皆索引&lt;/h3&gt;&lt;p&gt;深入讨论物理结构之前，需要明白一件事：InnoDB中一切都是索引&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;每一个表都有一个主键；如果CREATE TABLE没有指定主键，第一个非空(NOT NULL)的唯一键将被作为主键，如果没有非空的唯一键，InnoDB会自动分配一个48位（6个字节）的隐藏主键(ROW ID)。由于隐藏主键对用户不见，仍会占用表空间，建议在建表时明确指定主键。&lt;/li&gt;
-&lt;li&gt;表数据(主键以外的列)存储在主键索引结构中（clustered index）。聚集索引按照主键列构建索引树，行数据（包括一些用于MVCC的额外数据）存在索引页上。&lt;/li&gt;
-&lt;li&gt;二级索引存放在单独的索引结构中，按照键值构建索引树，但是在索引页中存放了主键的信息。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;所以，讨论InnoDB表的索引时，指的就是表数据和索引，数据即索引，索引即数据。&lt;/p&gt;
-&lt;h3 id=&quot;索引数据页结构&quot;&gt;&lt;a href=&quot;#索引数据页结构&quot; class=&quot;headerlink&quot; title=&quot;索引数据页结构&quot;&gt;&lt;/a&gt;索引数据页结构&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/INDEX_Page_Overview.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;FIL header, trailer&lt;br&gt;  一般数据页都会包含的内容。索引页有不同的地方，在页头中的前后页指针分别指向索引树中同级的前后节点，这样在索引中每一级上就形成了双向链表。下文会详细讨论&lt;/li&gt;
-&lt;li&gt;FSEG header&lt;br&gt;  索引的root节点中FSEG header存放指向索引文件段的指针，其他的索引页未使用并用0填&lt;/li&gt;
-&lt;li&gt;INDEX header&lt;br&gt;  索引页以及记录管理信息。下文讨论。&lt;/li&gt;
-&lt;li&gt;System record&lt;br&gt;  每个数据页中都包含2个系统记录：infimum和supremum。由于存放在固定的位置，这2个信息可以直接通过偏移字节数来找到。&lt;/li&gt;
-&lt;li&gt;User record&lt;br&gt;  实际数据，每个记录包含一个可变长记录头和实际的列数据。记录头中包含指向下一个数据记录的偏移量，数据记录形成单链表。&lt;/li&gt;
-&lt;li&gt;Page directory&lt;br&gt;  数据页目录从数据页尾的起始位置开始。存放一些指向数据页内数据记录的位置信息（每4到8个记录）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;INDEX-header&quot;&gt;&lt;a href=&quot;#INDEX-header&quot; class=&quot;headerlink&quot; title=&quot;INDEX header&quot;&gt;&lt;/a&gt;INDEX header&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/INDEX_Header.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Index ID： 数据页所属的索引ID&lt;/li&gt;
-&lt;li&gt;Format Flag： 页内记录格式，以高位（0x8000）存放在 Number of Heap Record列。可选值：COMPACT 和 REDUNDANT。&lt;/li&gt;
-&lt;li&gt;Maximun Transaction ID：数据页中对记录更改的最大事务ID&lt;/li&gt;
-&lt;li&gt;Number of Heap Records：数据页中的记录总数，包含infimum和supremum2个系统记录以及垃圾数据。&lt;/li&gt;
-&lt;li&gt;Heap Top Position：当前已使用空间末尾的偏移量。在heap top到数据页目录之前为可用空间。&lt;/li&gt;
-&lt;li&gt;First Garbage Record Offset： 指向第一个垃圾记录的指针。脏记录指针通过在记录头中指向下一个记录的next pointer 形成单链表&lt;/li&gt;
-&lt;li&gt;Garbage Space：垃圾记录列表的字节总数&lt;/li&gt;
-&lt;li&gt;Last Insert Position： 上次插入记录的字节偏移量&lt;/li&gt;
-&lt;li&gt;Page Direction：页方向可选值：LEFT,RIGHT 和 NO_DIRECTION. 这个值可以标识数据正在进行顺序插入还是随机插入。对于每一次插入，获取上一次插入的记录和它的位置，通过比较上一次插入记录的key和当前插入的记录key来决定插入的方向。&lt;/li&gt;
-&lt;li&gt;Number of Inserts in Page Direction：一旦页方向被设置，后续的未改变页方向的插入操作将增加这个计数&lt;/li&gt;
-&lt;li&gt;Page Level：索引中页的级别数（深度）。页节点级别值为0，从页节点往上增加。例如一个深度为3的B+tree，root节点的级别为2，中间非叶节点级别为1，叶节点为0.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Record-format&quot;&gt;&lt;a href=&quot;#Record-format&quot; class=&quot;headerlink&quot; title=&quot;Record format&quot;&gt;&lt;/a&gt;Record format&lt;/h3&gt;&lt;p&gt;COMPACT 记录格式是Barracuda表的新格式， REDUNDANT格式则是Antelope表的原始格式之一。COMPACT 主要目的是消除每一个记录都存放的多余信息，这些信息可以从数据字典中获得。例如列的数量，那些列允许为NULL，以及那些列是可变长的。&lt;/p&gt;
-&lt;h3 id=&quot;Record-pointer&quot;&gt;&lt;a href=&quot;#Record-pointer&quot; class=&quot;headerlink&quot; title=&quot;Record pointer&quot;&gt;&lt;/a&gt;Record pointer&lt;/h3&gt;&lt;p&gt;记录指针使用多个不同的地方：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;INDEX header中最后插入位置&lt;/li&gt;
-&lt;li&gt;页目录中的值&lt;/li&gt;
-&lt;li&gt;系统记录和用户记录中的指向下一个记录的指针&lt;br&gt;所有的记录包含一个记录和时间的记录数据。记录指针指向实际数据的第一字节，也就是在记录头和数据之间，这样使得可以通过记录索引往回读取记录头信息，也可以往下继续读取数据信息。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;由于系统记录和用户记录中后指针可以通过记录指针回读获得，这样可以高效地读取页内所有的记录而不需要去解析变长字段。&lt;/p&gt;
-&lt;h3 id=&quot;System-records&quot;&gt;&lt;a href=&quot;#System-records&quot; class=&quot;headerlink&quot; title=&quot;System records&quot;&gt;&lt;/a&gt;System records&lt;/h3&gt;&lt;p&gt;每一个索引页包含2条系统记录：infimum和supremum，分别存放在固定偏移位置： 99和112。系统记录结构：&lt;br&gt;&lt;img src=&quot;/images/INDEX_System_Records.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;infimum record 包含一个数据页中最小的键值。他的后指针指向用户记录中最小键值。 它提供了对用户记录遍历的固定入口。&lt;/li&gt;
-&lt;li&gt;supremum record 包含一个数据页中最大的键值，他的后指针总是为0，也就是指向无效的地址，用户记录中包含最大键值的记录中的后索引指向supremum record&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;User-record&quot;&gt;&lt;a href=&quot;#User-record&quot; class=&quot;headerlink&quot; title=&quot;User record&quot;&gt;&lt;/a&gt;User record&lt;/h3&gt;&lt;p&gt;用户记录按照他们插入的顺序保存在数据页中，包括复用已删除的记录空间，并且通过每一个记录头中的后索引来形成键值递增的单链表。单链表以infimum开始，递增链接所有的用户数据，以supremum结尾。通过这个单链表，升序遍历数据页中的所有数据变得非常容易。&lt;/p&gt;
-&lt;p&gt;再通过INDEX header中的后索引，就可以形成数据页之间的单链表，这样对整个索引树的升序遍历也会变成非常容易，也就是数据表的升序遍历：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;从索引中包含最小键值的数据页开始&lt;/li&gt;
-&lt;li&gt;读取infimum，接着是后索引&lt;/li&gt;
-&lt;li&gt;如果读取到supremum，跳转第五步，否则继续读取记录&lt;/li&gt;
-&lt;li&gt;根据后索引跳转第三步&lt;/li&gt;
-&lt;li&gt;如果后索引指向NULL，否则跳转第二步，进行下一个数据页&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;由于结构是单链表，逆序的遍历比升序遍历要复杂一些。&lt;/p&gt;
-&lt;h3 id=&quot;The-page-directory&quot;&gt;&lt;a href=&quot;#The-page-directory&quot; class=&quot;headerlink&quot; title=&quot;The page directory&quot;&gt;&lt;/a&gt;The page directory&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/INDEX_Page_Directory.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;页目录从FIL trailer向上存放，对每4-8个记录保存一个制证在页目录中，另加对infimum和supremum的指针。该指针为16位的变长数组，其中为数据记录的偏移量。&lt;/p&gt;
-&lt;h3 id=&quot;Free-space&quot;&gt;&lt;a href=&quot;#Free-space&quot; class=&quot;headerlink&quot; title=&quot;Free space&quot;&gt;&lt;/a&gt;Free space&lt;/h3&gt;&lt;p&gt;在用户记录和页目录之间为可用空间。如果用户记录块和页目录块直接没有空闲空间（通过重组数据页，删除垃圾数据之后），则数据页被占满。&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>原文地址:</p><p><a href="http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/" target="_blank" rel="noopener">The physical structure of InnoDB index pages </a></p><h3 id="InnoDB：一切皆索引"><a href="#InnoDB：一切皆索引" class="headerlink" title="InnoDB：一切皆索引"></a>InnoDB：一切皆索引</h3><p>深入讨论物理结构之前，需要明白一件事：InnoDB中一切都是索引</p><ol><li>每一个表都有一个主键；如果CREATE TABLE没有指定主键，第一个非空(NOT NULL)的唯一键将被作为主键，如果没有非空的唯一键，InnoDB会自动分配一个48位（6个字节）的隐藏主键(ROW ID)。由于隐藏主键对用户不见，仍会占用表空间，建议在建表时明确指定主键。</li><li>表数据(主键以外的列)存储在主键索引结构中（clustered index）。聚集索引按照主键列构建索引树，行数据（包括一些用于MVCC的额外数据）存在索引页上。</li><li>二级索引存放在单独的索引结构中，按照键值构建索引树，但是在索引页中存放了主键的信息。</li></ol><p>所以，讨论InnoDB表的索引时，指的就是表数据和索引，数据即索引，索引即数据。</p><h3 id="索引数据页结构"><a href="#索引数据页结构" class="headerlink" title="索引数据页结构"></a>索引数据页结构</h3><p><img src="/images/INDEX_Page_Overview.png" alt></p><ul><li>FIL header, trailer<br>  一般数据页都会包含的内容。索引页有不同的地方，在页头中的前后页指针分别指向索引树中同级的前后节点，这样在索引中每一级上就形成了双向链表。下文会详细讨论</li><li>FSEG header<br>  索引的root节点中FSEG header存放指向索引文件段的指针，其他的索引页未使用并用0填</li><li>INDEX header<br>  索引页以及记录管理信息。下文讨论。</li><li>System record<br>  每个数据页中都包含2个系统记录：infimum和supremum。由于存放在固定的位置，这2个信息可以直接通过偏移字节数来找到。</li><li>User record<br>  实际数据，每个记录包含一个可变长记录头和实际的列数据。记录头中包含指向下一个数据记录的偏移量，数据记录形成单链表。</li><li>Page directory<br>  数据页目录从数据页尾的起始位置开始。存放一些指向数据页内数据记录的位置信息（每4到8个记录）。</li></ul><h3 id="INDEX-header"><a href="#INDEX-header" class="headerlink" title="INDEX header"></a>INDEX header</h3><p><img src="/images/INDEX_Header.png" alt></p><ul><li>Index ID： 数据页所属的索引ID</li><li>Format Flag： 页内记录格式，以高位（0x8000）存放在 Number of Heap Record列。可选值：COMPACT 和 REDUNDANT。</li><li>Maximun Transaction ID：数据页中对记录更改的最大事务ID</li><li>Number of Heap Records：数据页中的记录总数，包含infimum和supremum2个系统记录以及垃圾数据。</li><li>Heap Top Position：当前已使用空间末尾的偏移量。在heap top到数据页目录之前为可用空间。</li><li>First Garbage Record Offset： 指向第一个垃圾记录的指针。脏记录指针通过在记录头中指向下一个记录的next pointer 形成单链表</li><li>Garbage Space：垃圾记录列表的字节总数</li><li>Last Insert Position： 上次插入记录的字节偏移量</li><li>Page Direction：页方向可选值：LEFT,RIGHT 和 NO_DIRECTION. 这个值可以标识数据正在进行顺序插入还是随机插入。对于每一次插入，获取上一次插入的记录和它的位置，通过比较上一次插入记录的key和当前插入的记录key来决定插入的方向。</li><li>Number of Inserts in Page Direction：一旦页方向被设置，后续的未改变页方向的插入操作将增加这个计数</li><li>Page Level：索引中页的级别数（深度）。页节点级别值为0，从页节点往上增加。例如一个深度为3的B+tree，root节点的级别为2，中间非叶节点级别为1，叶节点为0.</li></ul><h3 id="Record-format"><a href="#Record-format" class="headerlink" title="Record format"></a>Record format</h3><p>COMPACT 记录格式是Barracuda表的新格式， REDUNDANT格式则是Antelope表的原始格式之一。COMPACT 主要目的是消除每一个记录都存放的多余信息，这些信息可以从数据字典中获得。例如列的数量，那些列允许为NULL，以及那些列是可变长的。</p><h3 id="Record-pointer"><a href="#Record-pointer" class="headerlink" title="Record pointer"></a>Record pointer</h3><p>记录指针使用多个不同的地方：</p><ul><li>INDEX header中最后插入位置</li><li>页目录中的值</li><li>系统记录和用户记录中的指向下一个记录的指针<br>所有的记录包含一个记录和时间的记录数据。记录指针指向实际数据的第一字节，也就是在记录头和数据之间，这样使得可以通过记录索引往回读取记录头信息，也可以往下继续读取数据信息。</li></ul><p>由于系统记录和用户记录中后指针可以通过记录指针回读获得，这样可以高效地读取页内所有的记录而不需要去解析变长字段。</p><h3 id="System-records"><a href="#System-records" class="headerlink" title="System records"></a>System records</h3><p>每一个索引页包含2条系统记录：infimum和supremum，分别存放在固定偏移位置： 99和112。系统记录结构：<br><img src="/images/INDEX_System_Records.png" alt></p><ul><li>infimum record 包含一个数据页中最小的键值。他的后指针指向用户记录中最小键值。 它提供了对用户记录遍历的固定入口。</li><li>supremum record 包含一个数据页中最大的键值，他的后指针总是为0，也就是指向无效的地址，用户记录中包含最大键值的记录中的后索引指向supremum record</li></ul><h3 id="User-record"><a href="#User-record" class="headerlink" title="User record"></a>User record</h3><p>用户记录按照他们插入的顺序保存在数据页中，包括复用已删除的记录空间，并且通过每一个记录头中的后索引来形成键值递增的单链表。单链表以infimum开始，递增链接所有的用户数据，以supremum结尾。通过这个单链表，升序遍历数据页中的所有数据变得非常容易。</p><p>再通过INDEX header中的后索引，就可以形成数据页之间的单链表，这样对整个索引树的升序遍历也会变成非常容易，也就是数据表的升序遍历：</p><ol><li>从索引中包含最小键值的数据页开始</li><li>读取infimum，接着是后索引</li><li>如果读取到supremum，跳转第五步，否则继续读取记录</li><li>根据后索引跳转第三步</li><li>如果后索引指向NULL，否则跳转第二步，进行下一个数据页</li></ol><p>由于结构是单链表，逆序的遍历比升序遍历要复杂一些。</p><h3 id="The-page-directory"><a href="#The-page-directory" class="headerlink" title="The page directory"></a>The page directory</h3><p><img src="/images/INDEX_Page_Directory.png" alt></p><p>页目录从FIL trailer向上存放，对每4-8个记录保存一个制证在页目录中，另加对infimum和supremum的指针。该指针为16位的变长数组，其中为数据记录的偏移量。</p><h3 id="Free-space"><a href="#Free-space" class="headerlink" title="Free space"></a>Free space</h3><p>在用户记录和页目录之间为可用空间。如果用户记录块和页目录块直接没有空闲空间（通过重组数据页，删除垃圾数据之后），则数据页被占满。</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;原文地址:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The p
+      
+      
+        &lt;p&gt;原文地址:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blog.jcole.us/2013/01/07/the-physical-structure-of-innodb-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The p
+      
     
     </summary>
     
@@ -370,33 +142,9 @@ deleted(2) 删除标记
       <category term="Translate" scheme="www.www.com/categories/MySQL/InnoDB/Internal/Translate/"/>
     
     
-      <category term="Index" scheme="www.www.com/tags/Index/"/>
-    
       <category term="InnoDB" scheme="www.www.com/tags/InnoDB/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="www.www.com/2016/03/25/2013-09-27-hello-world/"/>
-    <id>www.www.com/2016/03/25/2013-09-27-hello-world/</id>
-    <published>2016-03-25T07:26:30.000Z</published>
-    <updated>2016-03-25T07:26:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Hello World&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Hello World&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="test" scheme="www.www.com/categories/test/"/>
-    
-    
-      <category term="test" scheme="www.www.com/tags/test/"/>
+      <category term="Index" scheme="www.www.com/tags/Index/"/>
     
   </entry>
   
@@ -407,104 +155,16 @@ deleted(2) 删除标记
     <published>2016-03-24T10:25:04.000Z</published>
     <updated>2016-04-01T06:09:33.000Z</updated>
     
-    <content type="html">&lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  ...
-  PRIMARY KEY (`id`),
-) ENGINE=InnoDB 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为什么InnoDB需要一个自增主键？或许有以下的答案：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;应该这样    &lt;/li&gt;
-&lt;li&gt;大家都这么做，自然有他的好处&lt;/li&gt;
-&lt;li&gt;老师/前辈 告诉/博客 是这样&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;统一规范&lt;/li&gt;
-&lt;li&gt;查询效率&lt;/li&gt;
-&lt;li&gt;运维依赖&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;li&gt;表体积（data，index）&lt;/li&gt;
-&lt;li&gt;更改主键需要重建表&lt;/li&gt;
-&lt;li&gt;隐藏主键&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;&quot;&gt;聚集索引(clusterd index)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;&quot;&gt;B+ tree&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;二级索引&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://xchliu.github.io/2016/03/31/The-physical-structure-of-InnoDB-index-pages/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;物理结构&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;统一规范&quot;&gt;&lt;a href=&quot;#统一规范&quot; class=&quot;headerlink&quot; title=&quot;统一规范&quot;&gt;&lt;/a&gt;统一规范&lt;/h3&gt;&lt;p&gt;很多情况下，表的自增主键已经成为了InnoDB的建表规范，而这个规范的来源，不管是经验，还是通过测试数据对比，或者是重点在“统一“上，这样做都带来若干的好处：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;建立参考基准，这一类还包括MySQL目录分配，基准配置，命名规范等。生产线采用符合基准的部署策略，对于初期部署，日常管理都会有很大的效率提升。&lt;/li&gt;
-&lt;li&gt;业务。关系型数据库中，范式作为解除集合函数依赖的法则，实体经常会在最终形成独立数据表，而最多的情况是，实例的属性中并没有能够唯一标识集合的key，比如user name，那么此时的自增主键就可以完美成为主键。说到范式，经常听到反（三）范式设计，范式只有满足与不满足，它既不是公理也不是真理，没有违反一说，在保证数据完整性的原则上做出任何手段的拆表都是可行的。&lt;/li&gt;
-&lt;li&gt;沟通成本。很多时候都会被问到，为什么要有建自增主键啊，32位md5行不行，64位uuid行不行，128位hash行不行。假设这个沟通结果为达成一致比例是7/10。单次消耗时间为t（因人而异），那么一段时间内花在这个点上的时间是t &lt;em&gt; n，并且，其中 t &lt;/em&gt; n * 0.3为无效沟通。有了统一规范，自然沟通的成本就降低了。&lt;/li&gt;
-&lt;li&gt;还有一个好处，让越来越多的人认为就应该如此。：）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;查询效率&quot;&gt;&lt;a href=&quot;#查询效率&quot; class=&quot;headerlink&quot; title=&quot;查询效率&quot;&gt;&lt;/a&gt;查询效率&lt;/h3&gt;&lt;p&gt;对于上面提到的0.3，可能需要进一步的论据来支持。那怎么办？&lt;code&gt;talk is cheap, show me the code&lt;/code&gt;。 同理，只能拿数据说话，能动手的时候坚决不动口。做一个对比的压力测试，当然是选择性能更好的方式。&lt;/p&gt;
-&lt;p&gt;查询效率，准确说查询响应时间，包括单次查询和并发查询。分2种情况：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;带key查询，这个key可是自定义主键，自增主键，二级索引。&lt;/li&gt;
-&lt;li&gt;不带key查询，做全表扫描。 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;运维依赖&quot;&gt;&lt;a href=&quot;#运维依赖&quot; class=&quot;headerlink&quot; title=&quot;运维依赖&quot;&gt;&lt;/a&gt;运维依赖&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;管理工具。日常维护脚本工具对主键的依赖。&lt;/li&gt;
-&lt;li&gt;第三方工具，比如pecona toolkit（&lt;a href=&quot;https://www.percona.com/doc/percona-toolkit/2.2/pt-online-schema-change.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pt-online-schema-change
-&lt;/a&gt;，&lt;a href=&quot;https://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pt-table-checksum&lt;/a&gt;）&lt;/li&gt;
-&lt;li&gt;高可用架构对显式定义主键的依赖：&lt;a href=&quot;https://www.percona.com/software/mysql-database/percona-xtradb-cluster&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Percona XtraDB Cluster&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;表体积&quot;&gt;&lt;a href=&quot;#表体积&quot; class=&quot;headerlink&quot; title=&quot;表体积&quot;&gt;&lt;/a&gt;表体积&lt;/h3&gt;&lt;p&gt;表级的优化，很重要的一点是保证数据表处于最紧凑，体积最小的状态，尽可能占用最小的空间，减少碎片空间，在进行数据检索时，占用更少的IO资源，自然查询的效率就提升了。&lt;/p&gt;
-&lt;p&gt;表的体积：cluster index ，secondary index&lt;/p&gt;
-&lt;p&gt;对比下几种情况下主键的空间占用：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;int 4 bytes  
-    unsigned 0 ~ 4294967295
-    signed：-2147483648 to 2147483647
- bigint 8 bytes  
-     unsigned 0 ~ 18446744073709551615
-     signed -9223372036854775808 to9223372036854775807
- 隐藏主键  6 bypes  
-     48位
- 自定义（uuid） len(key) +1 
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;所有的二级索引存放的是所依赖的主键信息，主键大小直接影响二级索引的大小。 &lt;/li&gt;
-&lt;li&gt;主键的空间占用：int &amp;lt; 隐藏主键 &amp;lt; bigint &amp;lt; 自定义&lt;/li&gt;
-&lt;li&gt;InnoDB 使用主键来作为cluster index来形成整个索引树，单调递增的整数在b+ tree的形成，遍历，分裂，性能最优。需要注意的是，int 和bigint都是有限的取值域。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;隐藏主键&quot;&gt;&lt;a href=&quot;#隐藏主键&quot; class=&quot;headerlink&quot; title=&quot;隐藏主键&quot;&gt;&lt;/a&gt;隐藏主键&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index on a synthetic column containing row ID values.
- The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于每一个InnoDB表，InnoDB都需要一个cluster key来组织表数据，一般情况下是主键（PRIMAYR KEY）.如果用户没有指定主键，如果表中没有唯一性约束且有NOT NULL属性的数据列，InnoDB会创建一个6个字节隐藏主键列作为cluter key，这个隐藏主键（ROW_ID）在数据插入时根据全局序列单调递增,这个ROW_ID对用户不可见，也不会用于内部功能（行级复制）。&lt;/p&gt;
-&lt;h4 id=&quot;分配策略&quot;&gt;&lt;a href=&quot;#分配策略&quot; class=&quot;headerlink&quot; title=&quot;分配策略&quot;&gt;&lt;/a&gt;分配策略&lt;/h4&gt;&lt;p&gt;在系统表空间中的数据字典中记录了所有ID的当前可用最大值, 可以理解为max(ID)+step, 这个全局的计算器就根据它来分配ID。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;file: include/dict0boot.ic
-38  UNIV_INLINE
-39  row_id_t
-40  dict_sys_get_new_row_id(void)
-41  /*=========================*/
-42  {
-43          row_id_t        id;
-44  
-45          mutex_enter(&amp;amp;(dict_sys-&amp;gt;mutex));
-47          id = dict_sys-&amp;gt;row_id;
-49          if (0 == (id % DICT_HDR_ROW_ID_WRITE_MARGIN)) {
-51                  dict_hdr_flush_row_id();
-52          }
-54          dict_sys-&amp;gt;row_id++;
-56          mutex_exit(&amp;amp;(dict_sys-&amp;gt;mutex));
-57  
-58          return(id);
-59  }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;全局序列使用dict_sys-&amp;gt;mutex 互斥锁进行保护，即使是增值（和原子递增相反）。实现中并没有对ID值超过48位的溢出问题做保护处理，但是假设一个每秒100万的插入量也需要9年左右才能耗尽ID的取值域。&lt;/p&gt;
-&lt;h4 id=&quot;冲突的保护&quot;&gt;&lt;a href=&quot;#冲突的保护&quot; class=&quot;headerlink&quot; title=&quot;冲突的保护&quot;&gt;&lt;/a&gt;冲突的保护&lt;/h4&gt;&lt;p&gt;DICT_HDR_ROW_ID_WRITE_MARGIN(256) 这个值决定了序列的落盘机制，如果取得的id对DICT_HDR_ROW_ID_WRITE_MARGIN取模为0（倍数），就修改数据字典中SYS中的DICT_HDR_ROW_ID并flush disk。InnoDB启动时，InnoDB会将磁盘上DICT_HDR_ROW_ID的增加到256-511范围内。这样就保证了已经产生的ID都小于当前的起始值，也就不会造成ID冲突。&lt;/p&gt;
-&lt;h4 id=&quot;性能&quot;&gt;&lt;a href=&quot;#性能&quot; class=&quot;headerlink&quot; title=&quot;性能&quot;&gt;&lt;/a&gt;性能&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;在InnoDB的代码中很多地方都使用到dict_sys-&amp;gt;mutex。如果这个锁被占用（如drop table）， 那么包含隐藏主键的InnoDB表的插入操作将受到阻塞。&lt;/li&gt;
-&lt;li&gt;ROW_ID的分配时，共享的互斥锁和全局共享计数器都需要序列化，这也会形成性能瓶颈，如果对包含隐藏主键进行并发插入，其性能必然下降。&lt;/li&gt;
-&lt;li&gt;无论事务是否提交，每DICT_HDR_ROW_ID_WRITE_MARGIN个ROW_ID分配，都会进行SYS的刷盘操作，磁盘本身就是数据库系统中硬件短板，大多数优化手段都会将减少磁盘IO作为重要的考虑因素，使用隐藏主键自然会增加IO负载。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;关于隐藏主键：&lt;a href=&quot;http://blog.jcole.us/2013/05/02/how-does-innodb-behave-without-a-primary-key/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How does InnoDB behave without a Primary Key?&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;长主键： &lt;a href=&quot;https://www.percona.com/blog/2006/10/03/long-primary-key-for-innodb-tables/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Long PRIMARY KEY for Innodb tables&lt;/a&gt;&lt;/p&gt;
-</content>
+    <content type="html"><![CDATA[<p>随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：</p><pre><code>CREATE TABLE `t_t` (  `id` int NOT NULL AUTO_INCREMENT,  ...  PRIMARY KEY (`id`),) ENGINE=InnoDB </code></pre><p>为什么InnoDB需要一个自增主键？或许有以下的答案：</p><ul><li>应该这样    </li><li>大家都这么做，自然有他的好处</li><li>老师/前辈 告诉/博客 是这样</li><li></li><li>统一规范</li><li>查询效率</li><li>运维依赖</li><li></li><li>表体积（data，index）</li><li>更改主键需要重建表</li><li>隐藏主键</li><li><a href>聚集索引(clusterd index)</a></li><li><a href>B+ tree</a></li><li>二级索引</li><li><a href="http://xchliu.github.io/2016/03/31/The-physical-structure-of-InnoDB-index-pages/" target="_blank" rel="noopener">物理结构</a></li></ul><h3 id="统一规范"><a href="#统一规范" class="headerlink" title="统一规范"></a>统一规范</h3><p>很多情况下，表的自增主键已经成为了InnoDB的建表规范，而这个规范的来源，不管是经验，还是通过测试数据对比，或者是重点在“统一“上，这样做都带来若干的好处：</p><ul><li>建立参考基准，这一类还包括MySQL目录分配，基准配置，命名规范等。生产线采用符合基准的部署策略，对于初期部署，日常管理都会有很大的效率提升。</li><li>业务。关系型数据库中，范式作为解除集合函数依赖的法则，实体经常会在最终形成独立数据表，而最多的情况是，实例的属性中并没有能够唯一标识集合的key，比如user name，那么此时的自增主键就可以完美成为主键。说到范式，经常听到反（三）范式设计，范式只有满足与不满足，它既不是公理也不是真理，没有违反一说，在保证数据完整性的原则上做出任何手段的拆表都是可行的。</li><li>沟通成本。很多时候都会被问到，为什么要有建自增主键啊，32位md5行不行，64位uuid行不行，128位hash行不行。假设这个沟通结果为达成一致比例是7/10。单次消耗时间为t（因人而异），那么一段时间内花在这个点上的时间是t * n，并且，其中 t * n * 0.3为无效沟通。有了统一规范，自然沟通的成本就降低了。</li><li>还有一个好处，让越来越多的人认为就应该如此。：）</li></ul><h3 id="查询效率"><a href="#查询效率" class="headerlink" title="查询效率"></a>查询效率</h3><p>对于上面提到的0.3，可能需要进一步的论据来支持。那怎么办？<code>talk is cheap, show me the code</code>。 同理，只能拿数据说话，能动手的时候坚决不动口。做一个对比的压力测试，当然是选择性能更好的方式。</p><p>查询效率，准确说查询响应时间，包括单次查询和并发查询。分2种情况：</p><ol><li>带key查询，这个key可是自定义主键，自增主键，二级索引。</li><li>不带key查询，做全表扫描。 </li></ol><h3 id="运维依赖"><a href="#运维依赖" class="headerlink" title="运维依赖"></a>运维依赖</h3><ul><li>管理工具。日常维护脚本工具对主键的依赖。</li><li>第三方工具，比如pecona toolkit（<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-online-schema-change.html" target="_blank" rel="noopener">pt-online-schema-change</a>，<a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-table-checksum.html" target="_blank" rel="noopener">pt-table-checksum</a>）</li><li>高可用架构对显式定义主键的依赖：<a href="https://www.percona.com/software/mysql-database/percona-xtradb-cluster" target="_blank" rel="noopener">Percona XtraDB Cluster</a></li></ul><h3 id="表体积"><a href="#表体积" class="headerlink" title="表体积"></a>表体积</h3><p>表级的优化，很重要的一点是保证数据表处于最紧凑，体积最小的状态，尽可能占用最小的空间，减少碎片空间，在进行数据检索时，占用更少的IO资源，自然查询的效率就提升了。</p><p>表的体积：cluster index ，secondary index</p><p>对比下几种情况下主键的空间占用：</p><pre><code>int 4 bytes      unsigned 0 ~ 4294967295    signed：-2147483648 to 2147483647 bigint 8 bytes       unsigned 0 ~ 18446744073709551615     signed -9223372036854775808 to9223372036854775807 隐藏主键  6 bypes       48位 自定义（uuid） len(key) +1 </code></pre><ol><li>所有的二级索引存放的是所依赖的主键信息，主键大小直接影响二级索引的大小。 </li><li>主键的空间占用：int &lt; 隐藏主键 &lt; bigint &lt; 自定义</li><li>InnoDB 使用主键来作为cluster index来形成整个索引树，单调递增的整数在b+ tree的形成，遍历，分裂，性能最优。需要注意的是，int 和bigint都是有限的取值域。</li></ol><h3 id="隐藏主键"><a href="#隐藏主键" class="headerlink" title="隐藏主键"></a>隐藏主键</h3><pre><code>If the table has no PRIMARY KEY or suitable UNIQUE index, InnoDB internally generates a hidden clustered index on a synthetic column containing row ID values. The rows are ordered by the ID that InnoDB assigns to the rows in such a table. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in insertion order.</code></pre><p>对于每一个InnoDB表，InnoDB都需要一个cluster key来组织表数据，一般情况下是主键（PRIMAYR KEY）.如果用户没有指定主键，如果表中没有唯一性约束且有NOT NULL属性的数据列，InnoDB会创建一个6个字节隐藏主键列作为cluter key，这个隐藏主键（ROW_ID）在数据插入时根据全局序列单调递增,这个ROW_ID对用户不可见，也不会用于内部功能（行级复制）。</p><h4 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h4><p>在系统表空间中的数据字典中记录了所有ID的当前可用最大值, 可以理解为max(ID)+step, 这个全局的计算器就根据它来分配ID。</p><pre><code>file: include/dict0boot.ic38  UNIV_INLINE39  row_id_t40  dict_sys_get_new_row_id(void)41  /*=========================*/42  {43          row_id_t        id;44  45          mutex_enter(&amp;(dict_sys-&gt;mutex));47          id = dict_sys-&gt;row_id;49          if (0 == (id % DICT_HDR_ROW_ID_WRITE_MARGIN)) {51                  dict_hdr_flush_row_id();52          }54          dict_sys-&gt;row_id++;56          mutex_exit(&amp;(dict_sys-&gt;mutex));57  58          return(id);59  }</code></pre><p>全局序列使用dict_sys-&gt;mutex 互斥锁进行保护，即使是增值（和原子递增相反）。实现中并没有对ID值超过48位的溢出问题做保护处理，但是假设一个每秒100万的插入量也需要9年左右才能耗尽ID的取值域。</p><h4 id="冲突的保护"><a href="#冲突的保护" class="headerlink" title="冲突的保护"></a>冲突的保护</h4><p>DICT_HDR_ROW_ID_WRITE_MARGIN(256) 这个值决定了序列的落盘机制，如果取得的id对DICT_HDR_ROW_ID_WRITE_MARGIN取模为0（倍数），就修改数据字典中SYS中的DICT_HDR_ROW_ID并flush disk。InnoDB启动时，InnoDB会将磁盘上DICT_HDR_ROW_ID的增加到256-511范围内。这样就保证了已经产生的ID都小于当前的起始值，也就不会造成ID冲突。</p><h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><ul><li>在InnoDB的代码中很多地方都使用到dict_sys-&gt;mutex。如果这个锁被占用（如drop table）， 那么包含隐藏主键的InnoDB表的插入操作将受到阻塞。</li><li>ROW_ID的分配时，共享的互斥锁和全局共享计数器都需要序列化，这也会形成性能瓶颈，如果对包含隐藏主键进行并发插入，其性能必然下降。</li><li>无论事务是否提交，每DICT_HDR_ROW_ID_WRITE_MARGIN个ROW_ID分配，都会进行SYS的刷盘操作，磁盘本身就是数据库系统中硬件短板，大多数优化手段都会将减少磁盘IO作为重要的考虑因素，使用隐藏主键自然会增加IO负载。</li></ul><p>关于隐藏主键：<a href="http://blog.jcole.us/2013/05/02/how-does-innodb-behave-without-a-primary-key/" target="_blank" rel="noopener">How does InnoDB behave without a Primary Key?</a></p><p>长主键： <a href="https://www.percona.com/blog/2006/10/03/long-primary-key-for-innodb-tables/" target="_blank" rel="noopener">Long PRIMARY KEY for Innodb tables</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
+      
+      
+        &lt;p&gt;随着MySQL，InnoDB在互联网的广泛应用，围绕MySQL展开的调优经验逐渐演化成准则，其中众所周知的InonDB自增主键，很多公司已经列为基础规范。比如这样：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;CREATE TABLE `t_t` (
   `id` int NOT NUL
+      
     
     </summary>
     
@@ -520,6 +180,32 @@ deleted(2) 删除标记
       <category term="Primary" scheme="www.www.com/tags/Primary/"/>
     
       <category term="key" scheme="www.www.com/tags/key/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="www.www.com/2016/02/26/2013-09-27-hello-world/"/>
+    <id>www.www.com/2016/02/26/2013-09-27-hello-world/</id>
+    <published>2016-02-26T08:04:06.000Z</published>
+    <updated>2016-03-25T07:26:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hello World</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Hello World&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="test" scheme="www.www.com/categories/test/"/>
+    
+    
+      <category term="test" scheme="www.www.com/tags/test/"/>
     
   </entry>
   
