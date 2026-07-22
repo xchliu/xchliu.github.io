@@ -1,0 +1,26 @@
+# Jekyll 配置
+title: 诸葛坦
+description: 数据库、大数据、云计算、人工智能
+author: 诸葛坦
+url: https://xchliu.github.io
+
+# Markdown
+markdown: kramdown
+
+# 不处理的文件
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .gitignore
+
+# 保留现有静态文件
+include:
+  - 2016
+  - archives
+  - categories
+  - tags
+  - images
+  - css
+  - js
