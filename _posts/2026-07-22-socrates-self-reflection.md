@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "苏格拉底自省 · 2026-07-22"
-date: 2026-07-22 06:00:00 +0800
+date: 2026-07-22
 categories: 自省
 ---
 
