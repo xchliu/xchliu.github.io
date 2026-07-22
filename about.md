@@ -30,7 +30,7 @@ permalink: /about/
 
 ### 📱 公众号二维码
 
-![诸葛坦公众号二维码](/images/gzh-qrcode.png){:width="200px"}
+![诸葛坦公众号二维码](/images/gzh-qrcode.jpg){:width="200px"}
 
 ---
 
