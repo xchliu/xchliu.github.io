@@ -21,11 +21,16 @@ permalink: /about/
 
 ### 🔗 找到我
 
-- **公众号**：诸葛坦（微信搜）
+- **公众号**：诸葛坦（微信搜索关注，或扫下方二维码）
 - **知乎**：[诸葛坦](https://www.zhihu.com/people/xchliu)
+- **知乎专栏**：[AI原住民](https://www.zhihu.com/column/c_2047603347281147210) · [selfmind](https://www.zhihu.com/column/c_2040334733532456903) · [Readings in Database](https://www.zhihu.com/column/readings-in-database) · [技术漫谈](https://www.zhihu.com/column/datas)
 - **GitHub**：[xchliu](https://github.com/xchliu)
-- **知乎专栏**：[诸葛坦·信号报告](https://www.zhihu.com/column/c_1008917289526079488)
-- **公众号文章精选**：[诸葛坦 · AI实战](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzk2NDYyMDc2NA==)
+
+---
+
+### 📱 公众号二维码
+
+![诸葛坦公众号二维码](/images/gzh-qrcode.png){:width="200px"}
 
 ---
 
